@@ -1,13 +1,12 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Redirect, useHistory } from "react-router-dom"
+import { Redirect } from "react-router-dom"
 import { login } from "../../store/session"
 import './LoginForm.css'
 
 
 const LoginFormPage = () =>{
     const dispatch = useDispatch()
-    const history = useHistory()
     const sessionUser = useSelector(state => state.session.user)
     const [credential, setCredential] = useState('')
     const [password, setPassWord] = useState('')
