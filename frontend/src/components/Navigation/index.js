@@ -16,20 +16,31 @@ function Navigation({ isLoaded }) {
         );
     } else {
         sessionLinks = (
-            <>
-                <LoginFormModal />
-                <SignUpFormModal />
-            </>
+            <li className='navbar__links'>
+                <ul className='navbar__links-auth'>
+                    <li className='navbar__links-link'>
+                        <LoginFormModal />
+                    </li>
+                    <li className='navbar__links-link'>
+                        <SignUpFormModal />
+                    </li>
+                </ul>
+            </li>
+                
+            
         );
     }
 
     return (
-        <ul>
-            <li>
-                <NavLink exact to="/">Home</NavLink>
-                {isLoaded && sessionLinks}
-            </li>
-        </ul>
+        <nav className='navbar'>
+            <ul className='navbar__links'>
+                <li className='navbar__links-link'>
+                    <NavLink id='navbar__links-home' style={{ textDecoration: 'none' }} exact to="/">Home</NavLink>
+                    {isLoaded && sessionLinks}
+                </li>
+            </ul>
+        </nav>
+        
     );
 }
 

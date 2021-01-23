@@ -16,7 +16,7 @@ input:-webkit-autofill {
   transition: none !important;
 }
 
-.form__signup{
+.form__login{
     margin:auto;
     display: flex;
     flex-direction: column;
@@ -66,13 +66,6 @@ input:-webkit-autofill {
     border: .15px solid rgb(11,12,15);
     padding: .3rem;
 }
-.form__input-container--text{
-    background-color: rgb(32,40,51);
-    color:rgb(197,198,200);
-    border-radius: 4px;
-    border: .15px solid rgb(11,12,15);
-    padding: .3rem;
-}
 
 .form__button{
     align-self: center;
@@ -80,7 +73,7 @@ input:-webkit-autofill {
 }
 
 .form__button-button{
-    padding: 1rem;
+    padding: .7rem;
     background-color: rgb(70,162,159);
 }
 

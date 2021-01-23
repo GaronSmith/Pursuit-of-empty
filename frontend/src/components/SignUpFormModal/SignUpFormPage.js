@@ -20,7 +20,7 @@ const SignupForm = () => {
     const onSubmit = async (e) => {
         e.preventDefault()
         setErrors([])
-        if (password === confPassword) {
+        if (password === confirmPassword) {
             return dispatch(signup({ username, email, password }))
                 .catch((res) => {
                     if (res.data && res.data.errors) setErrors(res.data.errors)
@@ -34,48 +34,55 @@ const SignupForm = () => {
     return (
         <>
             <form className="form__signup" onSubmit={onSubmit}>
-                <h3>Sign Up</h3>
+                <div className='form__content-container'>
+                    <h3 className='form__title'>Sign Up</h3>
                     <ul className="error-list">
                         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                     </ul>
-                <div className="form__input-container">
-                    <label className="form__input-container--label">Username</label>
-                    <input 
-                    required 
-                    className="form__input-container--text" 
-                    type="text" value={username} 
-                    onChange={e => setUsername(e.target.value)} />
+                    <div className="form__input-container">
+                        <input
+                            required
+                            className="form__input-container--text"
+                            type="text" value={username}
+                            onChange={e => setUsername(e.target.value)} 
+                            placeholder='username'
+                            />
+                    </div>
+                    <div className="form__input-container">
+                        <input
+                            required
+                            className="form__input-container--text"
+                            type="email"
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
+                            placeholder= 'email'
+                            />
+                    </div>
+                    <div className="form__input-container">
+                        <input
+                            required
+                            className="form__input-container--text"
+                            type="password"
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                            placeholder='password'
+                            />
+                    </div>
+                    <div className="form__input-container">
+                        <input
+                            required
+                            className="form__input-container--text"
+                            type="password"
+                            value={confirmPassword}
+                            onChange={e => setConfirmPassword(e.target.value)}
+                            placeholder='confirm password'
+                            />
+                    </div>
+                    <div className="form__button">
+                        <button className="form__button-button" type="submit">Sign Up</button>
+                    </div>
                 </div>
-                <div className="form__input-container">
-                    <label className="form__input-container--label">Email</label>
-                    <input 
-                    required 
-                    className="form__input-container--text" 
-                    type="email" 
-                    value={email} 
-                    onChange={e => setEmail(e.target.value)} />
-                </div>
-                <div className="form__input-container">
-                    <label className="form__input-container--label">Password</label>
-                    <input 
-                    required 
-                    className="form__input-container--text" 
-                    type="password" 
-                    value={password} 
-                    onChange={e => setPassword(e.target.value)} />
-                </div>
-                <div className="form__input-container">
-                    <label className="form__input-container--label">Confirm Password</label>
-                    <input 
-                    required 
-                    className="form__input-container--text" 
-                    type="password" 
-                    value={confirmPassword} 
-                    onChange={e => setConfirmPassword(e.target.value)} />
-                </div>
-                <div className="form__button">
-                    <button className="form__button" type="submit">Sign Up</button>
-                </div>
+                
             </form>
         </>
     );

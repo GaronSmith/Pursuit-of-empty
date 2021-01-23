@@ -1,0 +1,32 @@
+.navbar{
+    padding: 0.25rem;
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(11,12,15);
+}
+
+.navbar__links-auth, .navbar__links{
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    /* padding: 0.25rem; */
+}
+
+.navbar__links-link{
+    padding: .1rem;
+    font-size: 1.25rem;
+    display:flex;
+    flex-direction: row;
+    align-content:center;
+    text-decoration: none;
+}
+
+#navbar__links-home{
+    background-color: yellow;
+}
+
+
+.navbar__button{
+    background-color: yellow;
+    padding: .2rem;
+}
