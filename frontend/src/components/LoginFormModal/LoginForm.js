@@ -8,7 +8,7 @@ function LoginForm() {
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
 
-    const handleSubmit = (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
         setErrors([]);
         return dispatch(sessionActions.login({ credential, password })).catch(
@@ -20,7 +20,7 @@ function LoginForm() {
 
     return (
         <div className='form-container'>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={onSubmit}>
                 <ul>
                     {errors.map((error, idx) => (
                         <li key={idx}>{error}</li>
