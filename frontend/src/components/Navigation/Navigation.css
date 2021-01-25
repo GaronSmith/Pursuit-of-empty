@@ -9,6 +9,7 @@
 
 .navbar__links{
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: row;
     list-style: none;
@@ -28,7 +29,6 @@
 }
 .navbar__links-user{
     position: relative;
-    height: 100%;
 }
 
 .dropdown__profile-items{
@@ -37,6 +37,8 @@
     margin-top: 2.3rem;
     list-style: none;
     color:rgb(197,198,200);
+    font-size: 1.2rem;
+    padding: .3rem;
 }
 
 .navbar__links-auth-items{
@@ -50,14 +52,23 @@
     border: none;
     margin-right: 0;
     position: relative;
+    font-size: 1.1rem;
 }
 
 #navbar__links-home{
     text-decoration: none;
-    font-size: ;
     color:rgb(197,198,200);
 }
 .navbar__button-profile{
-    padding-right: .3rem;
+    padding-right: .5rem;
     height: 100%;
+    font-size: 1.1rem;
+}
+
+#icon__home{
+    font-size: 1.5rem;
+}
+
+.navbar__button-profile{
+    
 }
