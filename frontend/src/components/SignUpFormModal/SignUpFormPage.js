@@ -11,6 +11,8 @@ const SignupForm = () => {
 
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [errors, setErrors] = useState([]);
@@ -21,7 +23,7 @@ const SignupForm = () => {
         e.preventDefault()
         setErrors([])
         if (password === confirmPassword) {
-            return dispatch(signup({ username, email, password }))
+            return dispatch(signup({ username,firstName, lastName, email, password }))
                 .catch((res) => {
                     if (res.data && res.data.errors) setErrors(res.data.errors)
                 })
@@ -46,6 +48,24 @@ const SignupForm = () => {
                             type="text" value={username}
                             onChange={e => setUsername(e.target.value)} 
                             placeholder='username'
+                            />
+                    </div>
+                    <div className="form__input-container">
+                        <input
+                            required
+                            className="form__input-container--text"
+                            type="text" value={firstName}
+                            onChange={e => setFirstName(e.target.value)} 
+                            placeholder='First Name'
+                            />
+                    </div>
+                    <div className="form__input-container">
+                        <input
+                            required
+                            className="form__input-container--text"
+                            type="text" value={lastName}
+                            onChange={e => setLastName(e.target.value)} 
+                            placeholder='Last Name'
                             />
                     </div>
                     <div className="form__input-container">

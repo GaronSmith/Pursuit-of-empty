@@ -16,6 +16,14 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
+    firstName:{
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    lastName:{
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -34,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       defaultScope: {
         attributes: {
-          exclude: ['hashedPassword', 'email', 'createdAt', 'updatedAt'],
+          exclude: ['hashedPassword','firstName','lastName' ,'email', 'createdAt', 'updatedAt'],
         },
       },
       scopes: {
@@ -75,10 +83,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
 
-  User.signup = async function ({ username, email, password }) {
+  User.signup = async function ({ username, firstName, lastName, email, password }) {
     const hashedPassword = bcrypt.hashSync(password);
     const user = await User.create({
       username,
+      firstName, 
+      lastName,
       email,
       hashedPassword,
     });
