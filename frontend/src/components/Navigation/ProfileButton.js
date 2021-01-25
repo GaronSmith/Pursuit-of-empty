@@ -1,6 +1,8 @@
-// frontend/src/components/Navigation/ProfileButton.js
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+
 import * as sessionActions from '../../store/session';
 
 function ProfileButton({ user }) {
@@ -31,17 +33,18 @@ function ProfileButton({ user }) {
 
     return (
         <>
-            <button onClick={openMenu}>
-                <i className="fas fa-user-circle" />
+            <button className= 'navbar__button navbar__button-profile' onClick={openMenu}>
+                {/* <i className="fas fa-user-circle" /> */}
+                <FontAwesomeIcon className='navbar__button-profile' icon={faUserCircle}/>
             </button>
             {showMenu && (
-                <ul className="profile-dropdown">
-                    <li>{user.username}</li>
-                    <li>{user.email}</li>
-                    <li>
-                        <button onClick={logout}>Log Out</button>
-                    </li>
-                </ul>
+                    <div className='dropdown__profile-items'>
+                        <li>{user.username}</li>
+                        <li>{user.email}</li>
+                        <li>
+                            <button className='navbar__button' onClick={logout}>Log Out</button>
+                        </li>
+                    </div>
             )}
         </>
     );
