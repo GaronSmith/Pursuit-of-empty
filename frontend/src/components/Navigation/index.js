@@ -1,6 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHome } from '@fortawesome/free-solid-svg-icons'
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
@@ -16,8 +18,8 @@ function Navigation({ isLoaded }) {
         );
     } else {
         sessionLinks = (
-            <div className='navbar__links'>
-                <ul className='navbar__links-auth'>
+            <div className='navbar__links-auth'>
+                <ul className='navbar__links-auth-items'>
                     <li className='navbar__links-link'><LoginFormModal /></li>
                     <li className='navbar__links-link'><SignUpFormModal /></li>
                 </ul>
@@ -31,9 +33,13 @@ function Navigation({ isLoaded }) {
         <nav className='navbar'>
             <ul className='navbar__links'>
                 <li className='navbar__links-link'>
-                    <NavLink id='navbar__links-home' style={{ textDecoration: 'none' }} exact to="/">Home</NavLink>
-                    {isLoaded && sessionLinks}
+                    <NavLink id='navbar__links-home' style={{ textDecoration: 'none' }} exact to="/">
+                        <FontAwesomeIcon id='icon__home' icon={faHome}/>
+                        </NavLink>
                 </li>
+                <div className='navbar__links-user'>
+                    {isLoaded && sessionLinks}
+                </div>
             </ul>
         </nav>
         
