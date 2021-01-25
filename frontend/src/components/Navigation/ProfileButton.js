@@ -35,7 +35,7 @@ function ProfileButton({ user }) {
         <>
             <button className= 'navbar__button navbar__button-profile' onClick={openMenu}>
                 {/* <i className="fas fa-user-circle" /> */}
-                <FontAwesomeIcon className='navbar__button-profile' icon={faUserCircle}/>
+                <FontAwesomeIcon className='navbar__button-profile' icon={faUserCircle}/>{user.username}
             </button>
             {showMenu && (
                     <div className='dropdown__profile-items'>
