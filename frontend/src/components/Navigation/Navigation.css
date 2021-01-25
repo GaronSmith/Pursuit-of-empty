@@ -48,6 +48,7 @@
 .navbar__button{
     background-color: rgb(11,12,15);
     padding: .2rem;
+    padding-right: .5rem;
     color:rgb(197,198,200);
     border: none;
     margin-right: 0;
