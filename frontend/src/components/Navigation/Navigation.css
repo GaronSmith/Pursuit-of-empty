@@ -1,5 +1,5 @@
 .navbar{
-    padding: 0.25rem;
+    padding: 0.05rem;
     display: flex;
     flex-direction: row;
     background-color: rgb(11,12,15);
@@ -23,11 +23,17 @@
 
 #navbar__links-home{
     text-decoration: none;
-    color: yellow;
+    font-size: ;
+    color:rgb(197,198,200);
 }
 
+#icon__home{
+    height:2rem;
+}
 
 .navbar__button{
-    background-color: yellow;
+    background-color: rgb(11,12,15);
     padding: .2rem;
+    color:rgb(197,198,200);
+    border: none;
 }

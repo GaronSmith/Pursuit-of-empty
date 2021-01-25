@@ -1,6 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHome } from '@fortawesome/free-solid-svg-icons'
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
@@ -31,7 +33,9 @@ function Navigation({ isLoaded }) {
         <nav className='navbar'>
             <ul className='navbar__links'>
                 <li className='navbar__links-link'>
-                    <NavLink id='navbar__links-home' style={{ textDecoration: 'none' }} exact to="/">Home</NavLink>
+                    <NavLink id='navbar__links-home' style={{ textDecoration: 'none' }} exact to="/">
+                        <FontAwesomeIcon id='icon__home' icon={faHome}/>
+                        </NavLink>
                     {isLoaded && sessionLinks}
                 </li>
             </ul>
