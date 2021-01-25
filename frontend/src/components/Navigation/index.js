@@ -16,16 +16,12 @@ function Navigation({ isLoaded }) {
         );
     } else {
         sessionLinks = (
-            <li className='navbar__links'>
+            <div className='navbar__links'>
                 <ul className='navbar__links-auth'>
-                    <li className='navbar__links-link'>
-                        <LoginFormModal />
-                    </li>
-                    <li className='navbar__links-link'>
-                        <SignUpFormModal />
-                    </li>
+                    <li className='navbar__links-link'><LoginFormModal /></li>
+                    <li className='navbar__links-link'><SignUpFormModal /></li>
                 </ul>
-            </li>
+            </div>
                 
             
         );
