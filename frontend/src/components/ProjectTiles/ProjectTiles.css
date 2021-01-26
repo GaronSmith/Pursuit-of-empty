@@ -1,0 +1,40 @@
+.projects{
+    background-color: wheat;
+}
+
+.tiles-container__my-projects, .tiles-container__assigned-projects{
+    width:50%;
+}
+
+.tiles-container__tile{
+    height:200px;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    border: .5px solid black;
+}
+
+.project-tile__header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.project-tile__title{
+    padding: .5rem;
+    font-size: 1.3rem;
+    text-decoration: none;
+}
+
+button.project-tile__delete{
+    border: none;
+    background: none;
+    font-size: 1.3rem;
+}
+
+.project-tile__container-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding:.2rem;
+}
