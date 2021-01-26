@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { DateRangePicker } from 'react-date-range'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import './CreateProjectForm.css'
-import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css'; 
+import {projectCreate} from '../../store/project'
 
 
 const CreateProject = () => {
@@ -15,6 +16,7 @@ const CreateProject = () => {
     const [errors, setErrors] = useState([]);
 
     const sessionUser = useSelector(state => state.session.user);
+    const dispatch = useDispatch();
 
     const selectionRange = {
         startDate,
@@ -27,11 +29,23 @@ const CreateProject = () => {
         setStartDate(dates.selection.startDate)
         setEndDate(dates.selection.endDate)
     }
+    const onSubmit = (e) => {
+        e.preventDefault();
+        setErrors([])
+        return dispatch(projectCreate({ sessionUser, name, description,startDate,endDate})).catch(
+            (res) => {
+                if (res.data && res.data.errors) setErrors(res.data.errors);
+            }
+        );
+    }
 
     return (
-       <form className='form__login'>
+       <form className='form__login' onSubmit={onSubmit}>
             <div className='form__content-container'>
                 <h3 className='form__title'>Create a new project</h3>
+                <ul className="error-list">
+                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                </ul>
                 <div className="form__input-container">
                     <input
                         type="text"
@@ -62,7 +76,7 @@ const CreateProject = () => {
                     />
                 </div>   
                 <div className="form__button">
-                    <button id='cancel' className="form__button-button" type="submit">Cancel</button>
+                    <button id='cancel' data-dismiss="modal" className="form__button-button">Cancel</button>
                     <button className="form__button-button" type="submit">Create</button>
                 </div>
            </div>

@@ -9,9 +9,10 @@ const createProject = (project) => {
     }
 }
 
-const projectCreate = (project) => async (dispatch) => {
+export const projectCreate = (project) => async (dispatch) => {
     const {sessionUser, name, description, startDate, endDate} = project;
     const today = new Date()
+    today.setTime(0,0)
     const response = await fetch('/api/projects', {
         method:'POST',
         body: JSON.stringify({
@@ -20,22 +21,25 @@ const projectCreate = (project) => async (dispatch) => {
             description,  
             startDate,
             endDate,
-            active: ((startDate<= today) && (endDate >= today))
+            active: (((startDate <= today) && (endDate >= today)) || (!startDate && !endDate))
         }),
     });
     dispatch(createProject(response.data.project))
-
+    return response
 }
 
-const initialState = {project : {}};
+const initialState = {};
 
 const projectReducer = (state = initialState, action) =>{
     let newState;
+
     switch (action.type){
         case CREATE_PROJECT:
             newState = {...state};
-            newState[action.id] = action.payload;
+            newState[action.payload.id] = action.payload;
             return newState;
+        default:
+            return state
     }
 }
 
