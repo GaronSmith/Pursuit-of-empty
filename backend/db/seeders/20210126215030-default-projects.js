@@ -6,7 +6,7 @@ module.exports = {
    for(let i = 0; i < 200; i++){
      const newProj = {
        ownerId: Math.random() * (50 - 1) + 1,
-       name: faker.company.companyName(),
+       name: faker.company.catchPhraseDescriptor() +' ' + faker.company.catchPhraseNoun(),
        description:faker.lorem.paragraph(),
        startDate: faker.date.past(1),
        endDate: faker.date.future(1),
