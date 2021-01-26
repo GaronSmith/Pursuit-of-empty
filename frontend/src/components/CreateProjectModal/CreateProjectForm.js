@@ -41,7 +41,7 @@ const CreateProject = () => {
                 </div>
                 <div className="form__input-container">
                     <textarea
-                        value={name}
+                        value={description}
                         className="form__input-container--textarea"
                         onChange={(e) => setDescription(e.target.value)}
                         placeholder='project description'
