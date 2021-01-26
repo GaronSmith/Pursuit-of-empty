@@ -1,34 +1,25 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Projects', {
+    return queryInterface.createTable('Preferences', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      ownerId: {
+      userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references:{ model: { tableName: 'Users'}}
+        references: { model: { tableName: 'Users' } }
       },
-      name: {
-        type: Sequelize.STRING(250),
+      workflowStatusId: {
+        type: Sequelize.INTEGER,
         allowNull: false,
+        references: { model: { tableName: 'WorkFlowStatuses' } }
       },
-      description: {
-        type: Sequelize.STRING(500),
-        allowNull: false,
-      },
-      startDate: {
-        type: Sequelize.DATE
-      },
-      endDate: {
-        type: Sequelize.DATE
-      },
-      active: {
-        type: Sequelize.BOOLEAN
+      orderIdx: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -41,6 +32,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Projects');
+    return queryInterface.dropTable('Preferences');
   }
 };

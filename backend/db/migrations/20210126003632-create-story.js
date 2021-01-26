@@ -11,17 +11,17 @@ module.exports = {
       projectId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { models: { tableName: 'Projects' } }
+        references: { model: { tableName: 'Projects' } }
       },
       assignedId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { models: { tableName: 'Users' } }
+        references: { model: { tableName: 'Users' } }
       },
       workflowStatusId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { models: { tableName: 'WorkFlowStatuses' } }
+        references: { model: { tableName: 'WorkFlowStatuses' } }
       },
       progress: {
         type: Sequelize.STRING

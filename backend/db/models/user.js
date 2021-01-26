@@ -96,10 +96,10 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   User.associate = function (models) {
-    User.hasMany(models.Projects, {foreignKey : 'ownerId'})
-    User.hasMany(models.TeamMembers, {foreignKey : 'userId'})
-    User.hasMany(models.Stories, {foreignKey : 'assignedId'})
-    User.hasMany(models.Preferences, {foreignKey : 'userId'})
+    User.hasMany(models.Project, {foreignKey : 'ownerId'})
+    User.hasMany(models.TeamMember, {foreignKey : 'userId'})
+    User.hasMany(models.Story, {foreignKey : 'assignedId'})
+    User.hasMany(models.Preference, {foreignKey : 'userId'})
   };
   return User;
 };

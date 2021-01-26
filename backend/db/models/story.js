@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Stories = sequelize.define('Stories', {
+  const Story = sequelize.define('Story', {
     projectId: DataTypes.INTEGER,
     assignedId: DataTypes.INTEGER,
     workflowStatusId: DataTypes.INTEGER,
@@ -11,10 +11,11 @@ module.exports = (sequelize, DataTypes) => {
     points: DataTypes.INTEGER,
     code: DataTypes.STRING
   }, {});
-  Stories.associate = function(models) {
-    Stories.belongsTo(models.WorkFlowStatuses, {foreignKey:'workflowStatusId'})
-    Stories.belongsTo(models.Projects, {foreignKey: 'projectId'})
-    Stories.belongsTo(models.Users, {foreignKey: 'assignedId'})
+  Story.associate = function(models) {
+    Story.belongsTo(models.WorkFlowStatus, { foreignKey: 'workflowStatusId' })
+    Story.belongsTo(models.Project, { foreignKey: 'projectId' })
+    Story.belongsTo(models.User, { foreignKey: 'assignedId' })
+    Story.hasMany(models.Task, {foreignKey: 'storyId'})
   };
-  return Stories;
+  return Story;
 };

@@ -2,7 +2,7 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('TeamMembers', {
-      id: {
+       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -11,12 +11,12 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER,
         allowNull:false,
-        references:{models : {tableName : 'Users' }}
+        references:{model : {tableName : 'Users' }}
       },
       projectId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { models: { tableName: 'Projects' } }
+        references: { model: { tableName: 'Projects' } }
       },
       createdAt: {
         allowNull: false,
