@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING
   }, {});
   WorkFlowStatuses.associate = function(models) {
-    // associations can be defined here
+    WorkFlowStatuses.hasMany(models.Stories, {foreignKey: 'workflowStatusId'})
   };
   return WorkFlowStatuses;
 };
