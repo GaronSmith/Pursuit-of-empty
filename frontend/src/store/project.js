@@ -2,7 +2,6 @@ import { fetch } from './csrf'
 
 const CREATE_PROJECT = 'project/createProject';
 const SET_PROJECTS = 'project/setProjects'
-const SET_ASSIGNED_PROJECTS = 'project/setAssignedProjects'
 
 const createProject = (project) => {
     return {
@@ -15,13 +14,6 @@ const setProjects = (projects) => {
     return {
         type: SET_PROJECTS,
         projects,
-    }
-}
-
-const assignProjects = (assignedProjects) => {
-    return{
-        type: SET_ASSIGNED_PROJECTS,
-        assignedProjects,
     }
 }
 
@@ -44,15 +36,9 @@ export const projectCreate = (project) => async (dispatch) => {
     return response
 }
 
-export const getProjects = () => async (dispatch) => {
-    const response = await fetch('/api/projects/1') // remember to not hardcode
+export const getProjects = (id) => async (dispatch) => {
+    const response = await fetch(`/api/projects/${id}`) // remember to not hardcode
     dispatch(setProjects(response.data.projects))
-    return response
-}
-
-export const getAssignedProjects = () => async (dispatch) => {
-    const response = await fetch('/api/projects/1/assigned')
-    dispatch(assignProjects(response.data.projects))
     return response
 }
 
@@ -67,9 +53,6 @@ const projectReducer = (state = initialState, action) =>{
             newState[action.payload.id] = action.payload;
             return newState;
         case SET_PROJECTS:
-            newState = { ...state, ...action.projects };
-            return newState
-        case SET_ASSIGNED_PROJECTS:
             newState = { ...state, ...action.projects };
             return newState
         default:
