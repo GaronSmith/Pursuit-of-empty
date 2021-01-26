@@ -9,7 +9,7 @@ const createProject = (project) => {
     }
 }
 
-const projectCreate = (project) => async (dispatch) => {
+export const projectCreate = (project) => async (dispatch) => {
     const {sessionUser, name, description, startDate, endDate} = project;
     const today = new Date()
     const response = await fetch('/api/projects', {
@@ -20,14 +20,15 @@ const projectCreate = (project) => async (dispatch) => {
             description,  
             startDate,
             endDate,
-            active: ((startDate<= today) && (endDate >= today))
+            active: (((startDate<= today) && (endDate >= today)) || (!startDate && !endDate))
         }),
     });
+    console.log(response)
     dispatch(createProject(response.data.project))
     return response
 }
 
-const initialState = {project : {}};
+const initialState = {project : null};
 
 const projectReducer = (state = initialState, action) =>{
     let newState;
@@ -36,6 +37,8 @@ const projectReducer = (state = initialState, action) =>{
             newState = {...state};
             newState[action.id] = action.payload;
             return newState;
+        default:
+            return state
     }
 }
 
