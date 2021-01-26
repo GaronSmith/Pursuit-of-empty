@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    background-color: rgb(38,88,86);
+    background-color: rgb(28,65,64);
 }
 
 .navbar-second__buttons-container{

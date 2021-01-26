@@ -14,7 +14,9 @@
     flex-direction: row;
     list-style: none;
 }
-
+.navbar-second__buttons-button{
+    margin-right: 2rem;
+}
 .navbar__links-auth, .navbar__links-user{
     width: 100%;
     display: flex;

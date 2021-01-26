@@ -27,4 +27,13 @@ router.post('/', validateProject, asyncHandler(async (req,res) => {
     });
 }))
 
+router.get('/:id', asyncHandler(async(req,res) =>{
+    const projects = await Project.findAll({
+        where:{
+            ownerId: req.params.id
+        }
+    })
+    return res.json({projects})
+}))
+
 module.exports = router;

@@ -1,0 +1,51 @@
+.projects{
+    background-color: rgba(38,88,86,.1);;
+}
+
+.tiles-container__my-projects, .tiles-container__assigned-projects{
+    width:50%;
+}
+.tiles-container__title{
+    margin:1rem;
+    color: rgba(38,88,86,1);
+}
+
+.tiles-container__tile{
+    height:140px;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    border: .5px solid black;
+    margin: 1rem;
+}
+
+.project-tile__header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: rgb(38,88,86);
+}
+
+.project-tile__title{
+    padding: .5rem;
+    font-size: 1.3rem;
+    text-decoration: none;
+    color:rgb(197,198,200)
+}
+
+button.project-tile__delete{
+    border: none;
+    background: none;
+    font-size: 1.3rem;
+    color:rgb(143,1,45);
+}
+
+.project-tile__container-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    padding:.2rem;
+}
+.project-tile__container-description{
+    margin-left: 1.5rem;
+}
