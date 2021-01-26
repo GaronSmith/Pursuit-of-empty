@@ -11,7 +11,7 @@
 }
 
 .tiles-container__tile{
-    height:140px;
+    height:170px;
     width: 600px;
     display: flex;
     flex-direction: column;
