@@ -24,7 +24,7 @@ const projectCreate = (project) => async (dispatch) => {
         }),
     });
     dispatch(createProject(response.data.project))
-
+    return response
 }
 
 const initialState = {project : {}};
