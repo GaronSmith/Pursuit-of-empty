@@ -7,6 +7,7 @@
 }
 .tiles-container__title{
     margin:1rem;
+    color: rgba(38,88,86,1);
 }
 
 .tiles-container__tile{
@@ -42,6 +43,9 @@ button.project-tile__delete{
 .project-tile__container-details{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: start;
     padding:.2rem;
+}
+.project-tile__container-description{
+    margin-left: 1.5rem;
 }
