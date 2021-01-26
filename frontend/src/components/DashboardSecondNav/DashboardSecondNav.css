@@ -1,0 +1,30 @@
+.navbar-second{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: rgb(38,88,86);
+}
+
+.navbar-second__buttons-container{
+    display: flex;
+    margin: .8rem;
+}
+.navbar-second__buttons-button{
+    background-color: rgb(102,252,240);
+    color: rgb(32,41,51);
+    border: none;
+    border-radius: 5px;
+    font-size: 1.0rem;
+}
+
+.navbar-second__title-container{
+    display: flex;
+    margin: .6rem;
+}
+
+.navbar-second__title-text{
+    font-size: 1.3rem;
+    color: rgb(102,252,240);
+}
+
+/* font-family:Impact, Haettenschweiler, 'Arial Narrow', sans-serif; */
