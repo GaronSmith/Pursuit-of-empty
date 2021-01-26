@@ -6,8 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     orderIdx: DataTypes.INTEGER
   }, {});
   Preference.associate = function(models) {
-    Preference.belongsToMany(models.WorkFlowStatus, {foreignKey: 'workflowStatusId'})
-    Preference.belongsToMany(models.User, {foreignKey: 'userId'})
+    Preference.belongsTo(models.WorkFlowStatus, {foreignKey: 'workflowStatusId'})
+    Preference.belongsTo(models.User, {foreignKey: 'userId'})
   };
   return Preference;
 };

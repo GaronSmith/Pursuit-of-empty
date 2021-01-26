@@ -5,8 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     projectId: DataTypes.INTEGER
   }, {});
   TeamMember.associate = function(models) {
-    TeamMember.belongsToMany(models.User, { foreignKey: 'userId' })
-    TeamMember.belongsToMany(models.Project, { foreignKey: 'projectId' })
+    TeamMember.belongsTo(models.User, { foreignKey: 'userId' })
+    TeamMember.belongsTo(models.Project, { foreignKey: 'projectId' })
   };
   return TeamMember;
 };

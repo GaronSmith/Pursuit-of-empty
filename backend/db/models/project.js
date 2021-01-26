@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     active: DataTypes.BOOLEAN
   }, {});
   Project.associate = function (models) {
-    Project.belongsToMany(models.User, { foreignKey: 'ownerId' })
+    Project.belongsTo(models.User, { foreignKey: 'ownerId' })
     Project.hasMany(models.TeamMember, { foreignKey: 'projectId' })
     Project.hasMany(models.Story, { foreignKey: 'projectId' })
   };
