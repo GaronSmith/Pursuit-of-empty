@@ -1,11 +1,19 @@
 import { fetch } from './csrf'
 
 const CREATE_PROJECT = 'project/createProject';
+const SET_PROJECTS = 'project/setProjects'
 
 const createProject = (project) => {
     return {
         type: CREATE_PROJECT,
         payload: project,
+    }
+}
+
+const setProjects = (projects) => {
+    return {
+        type: SET_PROJECTS,
+        projects
     }
 }
 
@@ -28,6 +36,13 @@ export const projectCreate = (project) => async (dispatch) => {
     return response
 }
 
+export const getProjects = () => async (dispatch) => {
+    const response = await fetch('/api/projects/1') // remember to not hardcode
+    // console.log(response.data)
+    dispatch(setProjects(response.data.projects))
+    return response
+}
+
 const initialState = {};
 
 const projectReducer = (state = initialState, action) =>{
@@ -38,6 +53,9 @@ const projectReducer = (state = initialState, action) =>{
             newState = {...state};
             newState[action.payload.id] = action.payload;
             return newState;
+        case SET_PROJECTS:
+            newState = { ...state, ...action.projects };
+            return newState
         default:
             return state
     }

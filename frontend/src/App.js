@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import DashboardSecondNav from "./components/DashboardSecondNav";
+import ProjectsTiles from "./components/ProjectTiles"
 
 function App() {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ function App() {
     <>
       <Navigation isLoaded={isLoaded} />
       <DashboardSecondNav />
+      <ProjectsTiles />
     </>
   );
 }
