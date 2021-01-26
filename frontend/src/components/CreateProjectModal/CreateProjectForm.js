@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { DateRangePicker } from 'react-date-range'
-
+import { useSelector } from 'react-redux';
 
 import './CreateProjectForm.css'
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; 
+
 
 const CreateProject = () => {
     const [name, setName] = useState('');
@@ -12,6 +13,8 @@ const CreateProject = () => {
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
     const [errors, setErrors] = useState([]);
+
+    const sessionUser = useSelector(state => state.session.user);
 
     const selectionRange = {
         startDate,
