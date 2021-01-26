@@ -12,6 +12,7 @@ const createProject = (project) => {
 export const projectCreate = (project) => async (dispatch) => {
     const {sessionUser, name, description, startDate, endDate} = project;
     const today = new Date()
+    today.setTime(0,0)
     const response = await fetch('/api/projects', {
         method:'POST',
         body: JSON.stringify({
@@ -20,7 +21,7 @@ export const projectCreate = (project) => async (dispatch) => {
             description,  
             startDate,
             endDate,
-            active: (((startDate<= today) && (endDate >= today)) || (!startDate && !endDate))
+            active: (((startDate <= today) && (endDate >= today)) || (!startDate && !endDate))
         }),
     });
     dispatch(createProject(response.data.project))

@@ -76,7 +76,7 @@ const CreateProject = () => {
                     />
                 </div>   
                 <div className="form__button">
-                    <button id='cancel' className="form__button-button">Cancel</button>
+                    <button id='cancel' data-dismiss="modal" className="form__button-button">Cancel</button>
                     <button className="form__button-button" type="submit">Create</button>
                 </div>
            </div>
