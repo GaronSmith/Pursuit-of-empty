@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBan } from '@fortawesome/free-solid-svg-icons'
+import { faBan, faProjectDiagram } from '@fortawesome/free-solid-svg-icons'
 
 const ProjectDetails = ({project}) =>{
 
@@ -9,7 +9,8 @@ const ProjectDetails = ({project}) =>{
         <div className='project-tile__container'>
             <div className='project-tile__header'>
                 
-                <Link className='project-tile__title' to='/'>{project.name}</Link>  {/*set link properly */}
+                <Link className='project-tile__title' to='/'>
+                    <FontAwesomeIcon className='project-icon' icon={faProjectDiagram} /> {project.name}</Link>  {/*set link properly */}
                 <button className='project-tile__delete'>
                     <FontAwesomeIcon icon={faBan}/>
                 </button>
