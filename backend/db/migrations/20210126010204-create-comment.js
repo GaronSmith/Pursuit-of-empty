@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Tasks', {
+    return queryInterface.createTable('Comments', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -11,13 +11,16 @@ module.exports = {
       storyId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references:{model:{tableName: 'Stories'}}
+        references: { model: { tableName: 'Stories' } }
       },
-      name: {
-        type: Sequelize.STRING(250)
+      userId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { model: { tableName: 'Users' } }
       },
-      completed: {
-        type: Sequelize.BOOLEAN
+      text: {
+        type: Sequelize.STRING(1000),
+        allowNull:false
       },
       createdAt: {
         allowNull: false,
@@ -30,6 +33,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Tasks');
+    return queryInterface.dropTable('Comments');
   }
 };

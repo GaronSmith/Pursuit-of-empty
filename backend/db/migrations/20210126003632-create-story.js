@@ -27,10 +27,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(250)
       },
       description: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(500)
       },
       priority: {
         type: Sequelize.INTEGER
@@ -39,7 +39,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       code: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(250)
       },
       createdAt: {
         allowNull: false,
