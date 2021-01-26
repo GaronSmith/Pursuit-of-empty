@@ -89,7 +89,56 @@ input:-webkit-autofill {
 	margin-right: .3rem;
 
 }
-.form__content-calendar{
-	background-color: rgb(71,162,159);
+.rdrDefinedRangesWrapper{
+	display:none;
+}
+.rdrMonth {
+  background-color: rgb(118,120,124);
 }
 
+.rdrDateDisplay{
+	background-color: rgb(32,40,51);
+}
+
+.rdrDay.rdrDayDisabled{
+	background-color: rgb(118,120,124);
+}
+
+div.rdrDateDisplayWrapper, div.rdrMonthAndYearWrapper, div.rdrWeekDays{
+	background-color: rgb(32,40,51);
+}
+span.rdrYearPicker > select{
+	color:rgb(118,120,124);
+}
+
+span.rdrMonthPicker > select{
+	color:rgb(118,120,124);
+}
+div.rdrMonthName{
+	color:rgb(197,198,200);
+}
+
+span.rdrDateInput > input{
+	background-color: rgb(51,63,81);
+	
+}
+span.rdrDateInput{
+	border: .15px solid rgb(11,12,15);
+	border-right: .15px solid rgb(11,12,15);
+}
+
+button.rdrNextPrevButton{
+	background-color: rgb(197,198,200);
+}
+
+span.rdrInRange, span.rdrEndEdge, span.rdrStartEdge{
+	background-color:rgb(144,146,150)
+}
+
+div.rdrInfiniteMonths::-webkit-scrollbar{
+	display: none;
+}
+div.rdrInfiniteMonths{
+	-ms-overflow-style: none;  /* IE and Edge */
+  	scrollbar-width: none;
+}
