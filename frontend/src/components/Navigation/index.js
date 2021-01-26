@@ -7,6 +7,7 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 import SignUpFormModal from '../SignUpFormModal';
+import CreateProjectModal from '../CreateProjectModal';
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
@@ -14,7 +15,10 @@ function Navigation({ isLoaded }) {
     let sessionLinks;
     if (sessionUser) {
         sessionLinks = (
-            <ProfileButton user={sessionUser} />
+            <>
+                <CreateProjectModal id='create-project'/>
+                <ProfileButton user={sessionUser} />
+            </>
         );
     } else {
         sessionLinks = (
@@ -32,6 +36,10 @@ function Navigation({ isLoaded }) {
     return (
         <nav className='navbar'>
             <ul className='navbar__links'>
+                <div className='navbar-second__buttons-container'>
+ 
+                
+            </div>
                 <li className='navbar__links-link'>
                     <NavLink id='navbar__links-home' style={{ textDecoration: 'none' }} exact to="/">
                         <FontAwesomeIcon id='icon__home' icon={faHome}/>

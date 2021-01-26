@@ -15,7 +15,7 @@ function App() {
   return isLoaded && (
     <>
       <Navigation isLoaded={isLoaded} />
-      <DashboardSecondNav />
+      {/* <DashboardSecondNav /> */}
       <ProjectsTiles />
     </>
   );

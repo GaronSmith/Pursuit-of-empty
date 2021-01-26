@@ -1,24 +1,28 @@
 .projects{
-    background-color: rgb(71,166,162);;
+    background-color: rgba(38,88,86,.1);;
 }
 
 .tiles-container__my-projects, .tiles-container__assigned-projects{
     width:50%;
 }
+.tiles-container__title{
+    margin:1rem;
+}
 
 .tiles-container__tile{
-    height:200px;
+    height:140px;
     width: 600px;
     display: flex;
     flex-direction: column;
     border: .5px solid black;
+    margin: 1rem;
 }
 
 .project-tile__header{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: rgb(38,88,86);;
+    background-color: rgb(38,88,86);
 }
 
 .project-tile__title{
