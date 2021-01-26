@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   WorkFlowStatuses.associate = function(models) {
     WorkFlowStatuses.hasMany(models.Stories, {foreignKey: 'workflowStatusId'})
+    WorkFlowStatuses.hasMany(models.Preferences, {foreignKey: 'workflowStatusId'})
   };
   return WorkFlowStatuses;
 };
