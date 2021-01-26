@@ -23,19 +23,19 @@ export const projectCreate = (project) => async (dispatch) => {
             active: (((startDate<= today) && (endDate >= today)) || (!startDate && !endDate))
         }),
     });
-    console.log(response)
     dispatch(createProject(response.data.project))
     return response
 }
 
-const initialState = {project : null};
+const initialState = {};
 
 const projectReducer = (state = initialState, action) =>{
     let newState;
+
     switch (action.type){
         case CREATE_PROJECT:
             newState = {...state};
-            newState[action.id] = action.payload;
+            newState[action.payload.id] = action.payload;
             return newState;
         default:
             return state

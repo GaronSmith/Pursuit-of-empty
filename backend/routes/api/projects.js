@@ -27,3 +27,4 @@ router.post('/', validateProject, asyncHandler(async (req,res) => {
     });
 }))
 
+module.exports = router;
