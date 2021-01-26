@@ -1,3 +1,4 @@
+import CreateProjectModal from '../CreateProjectModal'
 import './DashboardSecondNav.css'
 
 const DashboardSecondNav = () => {
@@ -8,10 +9,11 @@ const DashboardSecondNav = () => {
                 <h4 className='navbar-second__title-text'>Projects</h4>
             </div>
             <div className='navbar-second__buttons-container'>
-                <button 
+                {/* <button 
                 className='navbar-second__buttons-button'>
                     Create Project
-                </button>
+                </button> */}
+                <CreateProjectModal />
             </div>
         </div>
     )
