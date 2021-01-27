@@ -18,6 +18,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
 
       <Switch>
+          <Route exact path='/'>
+            
+          </Route>
           <Route path='/dashboard'>
             <ProjectsTiles />
           </Route>

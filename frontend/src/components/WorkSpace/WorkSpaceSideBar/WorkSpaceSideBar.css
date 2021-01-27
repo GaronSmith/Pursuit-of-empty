@@ -10,17 +10,19 @@
     display:flex;
     flex-direction: column;
     justify-self: left;
-    margin-left:-1rem;
+    margin-left:-1.3rem;
     color:rgb(197,198,200);
+    font-size: 1.2rem;
 }
 
 .sidebar-container__link{
-    margin: .5rem;
+    margin-top: .7rem;
+    margin-bottom: .7rem;
     width: 100%;
 }
 .sidebar-container__link:hover{
     color: rgb(144,146,150);
 }
 .sidebar-container__link-text{
-    width: 90%;
+    width: 100%;
 }

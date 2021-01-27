@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBriefcase, faClipboard, faBusinessTime, faCheckSquare} from '@fortawesome/free-solid-svg-icons'
+
 import './WorkSpaceSideBar.css'
 
 const WorkSpaceSideBar = () => {
@@ -6,16 +9,16 @@ const WorkSpaceSideBar = () => {
         <div className='sidebar-container'>
             <ul className='sidebar-container__links'>
                 <div className='sidebar-container__link'>
-                    <li className='sidebar-container__link-text'>My Bucket</li>
+                    <li className='sidebar-container__link-text'><FontAwesomeIcon icon={faBriefcase} />  My Bucket</li>
                 </div>
                 <div className='sidebar-container__link'>
-                    <li className='sidebar-container__link-text'>Current Bucket</li>
+                    <li className='sidebar-container__link-text'><FontAwesomeIcon icon={faClipboard} />  Current Bucket</li>
                 </div>
                 <div className='sidebar-container__link'>
-                    <li className='sidebar-container__link-text'>Side Bucket</li>
+                    <li className='sidebar-container__link-text'><FontAwesomeIcon icon={faBusinessTime} />  Side Bucket</li>
                 </div>
                 <div className='sidebar-container__link'>
-                    <li className='sidebar-container__link-text'>Completed Bucket</li>
+                    <li className='sidebar-container__link-text'><FontAwesomeIcon icon={faCheckSquare} />  Completed Bucket</li>
                 </div>
             </ul>
         </div>
