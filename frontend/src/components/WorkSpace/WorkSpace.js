@@ -48,7 +48,6 @@ const WorkSpace = () => {
             })
             console.log('hit')
         }
-       
         if(stories){
             Object.keys(stories).forEach(el => {
                 newState.stories[stories[el].id] = stories[el]
@@ -62,7 +61,7 @@ const WorkSpace = () => {
             })
         }
         
-        console.log(newState)
+        setDragState(newState)
 
     }, [preferences,stories])
 
@@ -72,7 +71,11 @@ const WorkSpace = () => {
                 <WorkSpaceSideBar />
             </div>
             <div className='workspace'>
-                <WorkSpaceColumn title={'test'} />
+                {dragState.columnOrder.map(columnId => {
+                    const column = dragState.columns[columnId]
+                    const stories = column.storyIds.map(storyId => dragState.stories[storyId])
+                        return < WorkSpaceColumn column={column} stories={stories}  />
+                })}
             </div>
         </div>
     )
