@@ -51,3 +51,7 @@ button.project-tile__delete{
 .project-tile__container-description{
     margin-left: 1.5rem;
 }
+
+.project-tile__text-dates{
+    width: 160px;
+}
