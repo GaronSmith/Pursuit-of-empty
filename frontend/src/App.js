@@ -4,6 +4,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import ProjectsTiles from "./components/ProjectTiles"
 import { Switch, Route } from "react-router-dom";
+import WorkSpace from "./components/WorkSpace";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,8 +18,17 @@ function App() {
       <Navigation isLoaded={isLoaded} />
 
       <Switch>
+          <Route exact path='/'>
+            
+          </Route>
           <Route path='/dashboard'>
             <ProjectsTiles />
+          </Route>
+          <Route path='/workspace/:id'>
+            <WorkSpace />
+          </Route>
+          <Route>
+            404 page not found 
           </Route>
       </Switch>
       
