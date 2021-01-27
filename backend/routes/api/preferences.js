@@ -1,12 +1,13 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 
-const {Preference } = require('../../db/models');
+const {Preference , WorkFlowStatus} = require('../../db/models');
 
 const router = express.Router();
 
 router.get('/:id', asyncHandler(async (req,res) => {
     const preferences = await Preference.findAll({
+        include: WorkFlowStatus,
         where:{
             userId: req.params.id
         },

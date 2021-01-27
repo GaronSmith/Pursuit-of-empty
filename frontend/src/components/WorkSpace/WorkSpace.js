@@ -6,6 +6,7 @@ import { getPreferences }from '../../store/preferences'
 import './WorkSpace.css'
 import { getProjects } from '../../store/project'
 import { getAssignedProjects } from '../../store/assignedProjects'
+import WorkSpaceColumn from './WorkSpaceColumn'
 
 
 
@@ -28,6 +29,9 @@ const WorkSpace = () => {
         <div className='workspace-container'>
             <div className='sidebar'>
                 <WorkSpaceSideBar />
+            </div>
+            <div className='workspace'>
+                <WorkSpaceColumn title={'test'} />
             </div>
         </div>
     )
