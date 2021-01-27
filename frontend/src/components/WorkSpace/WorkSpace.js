@@ -22,7 +22,7 @@ const WorkSpace = () => {
             await dispatch(getPreferences(sessionUser.id))
         }
         getPrefs()
-    }, [dispatch])
+    }, [dispatch, sessionUser])
 
     return(
         <div className='workspace-container'>
