@@ -20,7 +20,15 @@ export const getPreferences = (id) => async (dispatch) => {
 const normalizePref = (arr) => {
     const obj = {};
     arr.forEach(el => {
-        obj[el.orderIdx] = el.WorkFlowStatus.name
+        obj[el.orderIdx] = el.workflowStatusId
+    })
+    return obj
+}
+
+const normalizedNames = (arr) => {
+    const obj = {}
+    arr.forEach(el => {
+        obj[el.workflowStatusId] = el.WorkFlowStatus.name
     })
     return obj
 }
@@ -34,8 +42,10 @@ const preferencesReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_PREFERENCES:
             const normalized = normalizePref(action.preferences)
+            const names = normalizedNames(action.preferences)
             newState = {...state}
             newState.order = normalized
+            newState.names = names
             return newState
         default:
             return state;

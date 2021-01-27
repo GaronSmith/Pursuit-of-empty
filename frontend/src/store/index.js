@@ -5,12 +5,15 @@ import sessionReducer from './session';
 import projectReducer from './project';
 import assignedProjectReducer from './assignedProjects'
 import preferencesReducer from './preferences'
+import storiesReducer from './stories';
+
 
 const rootReducer = combineReducers({
     session: sessionReducer,
     projects: projectReducer,
     assignedProjects: assignedProjectReducer,
     preferences: preferencesReducer,
+    stories: storiesReducer
 });
 
 let enhancer;
