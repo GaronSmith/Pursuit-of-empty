@@ -9,8 +9,8 @@ const ProjectDetails = ({project}) =>{
         <div className='project-tile__container'>
             <div className='project-tile__header'>
                 
-                <Link className='project-tile__title' to='/'>
-                    <FontAwesomeIcon className='project-icon' icon={faProjectDiagram} /> {project.name}</Link>  {/*set link properly */}
+                <Link className='project-tile__title' to={`/workspace/${project.id}`} >
+                    <FontAwesomeIcon className='project-icon' icon={faProjectDiagram} /> {project.name}</Link>  
                 <button className='project-tile__delete'>
                     <FontAwesomeIcon icon={faBan}/>
                 </button>
