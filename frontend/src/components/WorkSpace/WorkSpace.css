@@ -1,0 +1,9 @@
+.workspace-container{
+    background-color: rgba(38,88,86,.1);
+}
+
+.sidebar{
+    width: 200px;
+    height:100vh;
+    background-color:rgb(38,88,86);
+}

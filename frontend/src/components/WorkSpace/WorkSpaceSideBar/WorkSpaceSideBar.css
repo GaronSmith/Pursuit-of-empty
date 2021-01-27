@@ -1,0 +1,26 @@
+.sidebar-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-content: flex-end;
+}
+
+.sidebar-container__links{
+    list-style: none;
+    display:flex;
+    flex-direction: column;
+    justify-self: left;
+    margin-left:-1rem;
+    color:rgb(197,198,200);
+}
+
+.sidebar-container__link{
+    margin: .5rem;
+    width: 100%;
+}
+.sidebar-container__link:hover{
+    color: rgb(144,146,150);
+}
+.sidebar-container__link-text{
+    width: 90%;
+}
