@@ -6,7 +6,6 @@ import './CreateProjectForm.css'
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css'; 
 import {projectCreate} from '../../store/project'
-import { useHistory, Redirect } from 'react-router-dom';
 
 
 const CreateProject = ({handleClose}) => {
@@ -18,7 +17,6 @@ const CreateProject = ({handleClose}) => {
 
     const sessionUser = useSelector(state => state.session.user);
     const dispatch = useDispatch();
-    const history = useHistory();
 
     const selectionRange = {
         startDate,

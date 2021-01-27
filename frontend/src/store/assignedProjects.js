@@ -20,10 +20,9 @@ const initialState = {};
 
 const assignedProjectReducer = (state = initialState, action) => {
     let newState;
-
     switch (action.type) {
         case SET_ASSIGNED_PROJECTS:
-            newState = { ...state, ...action.assignedProjects };
+            newState = { ...state, ...action.assignedProjects};
             return newState
         default:
             return state

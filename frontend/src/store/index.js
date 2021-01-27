@@ -4,11 +4,13 @@ import thunk from 'redux-thunk';
 import sessionReducer from './session';
 import projectReducer from './project';
 import assignedProjectReducer from './assignedProjects'
+import preferencesReducer from './preferences'
 
 const rootReducer = combineReducers({
     session: sessionReducer,
     projects: projectReducer,
-    assignedProjects: assignedProjectReducer
+    assignedProjects: assignedProjectReducer,
+    preferences: preferencesReducer,
 });
 
 let enhancer;

@@ -45,7 +45,7 @@ button.project-tile__delete{
 .project-tile__container-details{
     display: flex;
     flex-direction: row;
-    justify-content: start;
+    justify-content: flex-start;
     padding:.2rem;
 }
 .project-tile__container-description{
