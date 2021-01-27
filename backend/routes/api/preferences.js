@@ -9,7 +9,8 @@ router.get('/:id', asyncHandler(async (req,res) => {
     const preferences = await Preference.findAll({
         where:{
             userId: req.params.id
-        }
+        },
+        order:[['orderIdx', 'DESC']]
     })
     return res.json({preferences})
 }));

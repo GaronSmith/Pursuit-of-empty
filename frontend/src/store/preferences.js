@@ -1,6 +1,6 @@
 import { fetch } from './csrf'
 
-const SET_PREFERENCES = 'preferences/ etPreferences'
+const SET_PREFERENCES = 'preferences/getPreferences'
 
 const setPreferences = (preferences) => {
     return {
@@ -11,9 +11,18 @@ const setPreferences = (preferences) => {
 
 export const getPreferences = (id) => async (dispatch) => {
 
-    const response = await fetch(`api/preferences/:id`)
+    const response = await fetch(`/api/preferences/${id}`)
     dispatch(setPreferences(response.data.preferences))
     return response
+}
+
+
+const normalizePref = (arr) => {
+    const obj = {};
+    arr.forEach(el => {
+        obj[el.orderIdx] = el.workflowStatusId
+    })
+    return obj
 }
 
 const initialState = {};
@@ -22,7 +31,9 @@ const preferencesReducer = (state = initialState, action) => {
     let newState
     switch (action.type) {
         case SET_PREFERENCES:
-            newState = action.preferences
+            const normalized = normalizePref(action.preferences)
+            newState = {...state, ...normalized}
+            return newState
         default:
             return state;
     }

@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
     session: sessionReducer,
     projects: projectReducer,
     assignedProjects: assignedProjectReducer,
-    preferences: preferencesReducer
+    preferences: preferencesReducer,
 });
 
 let enhancer;
