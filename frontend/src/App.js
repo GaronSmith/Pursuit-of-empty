@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import ProjectsTiles from "./components/ProjectTiles"
+import { Switch, Route } from "react-router-dom";
 
 function App() {
   const dispatch = useDispatch();
@@ -14,7 +15,13 @@ function App() {
   return isLoaded && (
     <>
       <Navigation isLoaded={isLoaded} />
-      <ProjectsTiles />
+
+      <Switch>
+          <Route path='/dashboard'>
+            <ProjectsTiles />
+          </Route>
+      </Switch>
+      
     </>
   );
 }

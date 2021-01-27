@@ -1,5 +1,7 @@
 .projects{
-    background-color: rgba(38,88,86,.1);;
+    background-color: rgba(38,88,86,.1);
+    display: flex;
+    flex-direction: row;
 }
 
 .tiles-container__my-projects, .tiles-container__assigned-projects{
@@ -11,8 +13,8 @@
 }
 
 .tiles-container__tile{
-    height:140px;
-    width: 600px;
+    height:200px;
+    width: 750px;
     display: flex;
     flex-direction: column;
     border: .5px solid black;
@@ -48,4 +50,8 @@ button.project-tile__delete{
 }
 .project-tile__container-description{
     margin-left: 1.5rem;
+}
+
+.project-tile__text-dates{
+    width: 160px;
 }

@@ -13,7 +13,7 @@ const createProject = (project) => {
 const setProjects = (projects) => {
     return {
         type: SET_PROJECTS,
-        projects
+        projects,
     }
 }
 
@@ -36,9 +36,8 @@ export const projectCreate = (project) => async (dispatch) => {
     return response
 }
 
-export const getProjects = () => async (dispatch) => {
-    const response = await fetch('/api/projects/1') // remember to not hardcode
-    // console.log(response.data)
+export const getProjects = (id) => async (dispatch) => {
+    const response = await fetch(`/api/projects/${id}`) // remember to not hardcode
     dispatch(setProjects(response.data.projects))
     return response
 }

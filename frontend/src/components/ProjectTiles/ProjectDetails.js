@@ -18,7 +18,7 @@ const ProjectDetails = ({project}) =>{
             <div className='project-tile__container-details'>
                 <div className='project-tile__container-info'>
                     <div className='project-tile__container-dates'>
-                        <p className='project-tile__text-dates'>Start date: <span className='date-span'>{moment(project.startDate.get).format("MMM Do YY")}</span></p>
+                        <p className='project-tile__text-dates'>Start date: <span className='date-span'>{moment(project.startDate).format("MMM Do YY")}</span></p>
                         <p className='project-tile__text-dates'>Project due: {moment(project.endDate).endOf('day').fromNow()}.</p>
                     </div>
                 </div>
