@@ -1,8 +1,8 @@
 import { fetch } from './csrf'
 
-const SET_PREFERENCES = preferences / setPreferences;
+const SET_PREFERENCES = 'preferences/ etPreferences'
 
-const setPreferences = (preferences) {
+const setPreferences = (preferences) => {
     return {
         type: SET_PREFERENCES,
         preferences,
