@@ -17,7 +17,7 @@ const ProjectsTiles = () => {
             await dispatch(getAssignedProjects(sessionUser.id))
        } 
        getProj()
-    }, [sessionUser, projects])
+    }, [sessionUser])
     let i = 0
     
     return (
