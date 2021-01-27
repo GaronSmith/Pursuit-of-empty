@@ -46,7 +46,6 @@ const WorkSpace = () => {
                     storyIds: [],
                 }
             })
-            console.log('hit')
         }
         if(stories){
             Object.keys(stories).forEach(el => {
@@ -74,7 +73,7 @@ const WorkSpace = () => {
                 {dragState.columnOrder.map(columnId => {
                     const column = dragState.columns[columnId]
                     const stories = column.storyIds.map(storyId => dragState.stories[storyId])
-                        return < WorkSpaceColumn column={column} stories={stories}  />
+                        return < WorkSpaceColumn key={column.id} column={column} stories={stories}  />
                 })}
             </div>
         </div>

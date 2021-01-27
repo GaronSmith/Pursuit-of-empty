@@ -3,6 +3,12 @@
     display: flex;
     flex-direction: row;
 }
+.workspace{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
 
 .sidebar{
     width: 200px;

@@ -1,0 +1,14 @@
+.column-container{
+    display: flex;
+    flex-direction: row;
+    margin: 1rem;
+    width: 400px;
+}
+
+.column-header{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid black;
+    height: 40px;
+    width: 100%;
+}
