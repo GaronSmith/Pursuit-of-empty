@@ -22,7 +22,7 @@ function App() {
             
           </Route>
           <Route path='/dashboard'>
-            <ProjectsTiles />
+            <ProjectsTiles isLoaded={isLoaded} />
           </Route>
           <Route path='/workspace/:id'>
             <WorkSpace />

@@ -4,8 +4,11 @@ import ProjectDetails from './ProjectDetails'
 import {getProjects} from '../../store/project'
 import {getAssignedProjects} from '../../store/assignedProjects'
 import './ProjectTiles.css'
+import { Redirect } from "react-router-dom"
 
-const ProjectsTiles = () => {
+const ProjectsTiles = ({isLoaded}) => {
+
+    
     const dispatch = useDispatch();
     const projects = useSelector(state => state.projects)
     const assignedProj = useSelector(state => state.assignedProjects)

@@ -13,7 +13,15 @@ function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
 
     let sessionLinks;
+    let homeLinks;
     if (sessionUser) {
+        homeLinks = (
+            <li className='navbar__links-link'>
+                <NavLink id='navbar__links-home' style={{ textDecoration: 'none' }} exact to="/dashboard">
+                    <FontAwesomeIcon id='icon__home' icon={faHome} />
+                </NavLink>
+            </li>
+        )
         sessionLinks = (
             <>
                 <CreateProjectModal id='create-project'/>
@@ -21,6 +29,13 @@ function Navigation({ isLoaded }) {
             </>
         );
     } else {
+        homeLinks = (
+            <li className='navbar__links-link'>
+                <NavLink id='navbar__links-home' style={{ textDecoration: 'none' }} exact to="/">
+                    <FontAwesomeIcon id='icon__home' icon={faHome} />
+                </NavLink>
+            </li>
+        )
         sessionLinks = (
             <div className='navbar__links-auth'>
                 <ul className='navbar__links-auth-items'>
@@ -32,7 +47,6 @@ function Navigation({ isLoaded }) {
             
         );
     }
-
     return (
         <nav className='navbar'>
             <ul className='navbar__links'>
@@ -40,11 +54,7 @@ function Navigation({ isLoaded }) {
  
                 
             </div>
-                <li className='navbar__links-link'>
-                    <NavLink id='navbar__links-home' style={{ textDecoration: 'none' }} exact to="/">
-                        <FontAwesomeIcon id='icon__home' icon={faHome}/>
-                        </NavLink>
-                </li>
+                {homeLinks}
                 <div className='navbar__links-user'>
                     {isLoaded && sessionLinks}
                 </div>
