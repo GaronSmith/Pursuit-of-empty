@@ -1,8 +1,8 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { Check, check } = require('express-validator');
+const { check } = require('express-validator');
 
-const {Project} = require('../../db/models');
+const {Project, TeamMember} = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
@@ -34,6 +34,16 @@ router.get('/:id', asyncHandler(async(req,res) =>{
         }
     })
     return res.json({projects})
+}))
+
+router.get('/:id/assigned', asyncHandler(async (req, res) => {
+    const projects = await TeamMember.findAll({
+        include:Project,
+        where: {
+            userId: req.params.id
+        }
+    })
+    return res.json({ projects })
 }))
 
 module.exports = router;

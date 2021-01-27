@@ -6,6 +6,8 @@ import CreateProjectForm from './CreateProjectForm';
 const CreateProjectModal = () =>{
     const [showModal, setShowModal] = useState(false);
 
+    const handleClose = () => setShowModal(false);
+
     return (
         <>
             <button 
@@ -15,7 +17,7 @@ const CreateProjectModal = () =>{
             </button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <CreateProjectForm />
+                    <CreateProjectForm handleClose={handleClose}/>
                 </Modal>
             )}
         </>

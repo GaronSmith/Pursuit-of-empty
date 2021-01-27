@@ -6,9 +6,10 @@ import './CreateProjectForm.css'
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css'; 
 import {projectCreate} from '../../store/project'
+import { useHistory, Redirect } from 'react-router-dom';
 
 
-const CreateProject = () => {
+const CreateProject = ({handleClose}) => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [startDate, setStartDate] = useState(new Date());
@@ -17,6 +18,7 @@ const CreateProject = () => {
 
     const sessionUser = useSelector(state => state.session.user);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const selectionRange = {
         startDate,
@@ -32,7 +34,7 @@ const CreateProject = () => {
     const onSubmit = (e) => {
         e.preventDefault();
         setErrors([])
-        return dispatch(projectCreate({ sessionUser, name, description,startDate,endDate})).catch(
+        return dispatch(projectCreate({ sessionUser, name, description, startDate, endDate })).then(handleClose()).catch(
             (res) => {
                 if (res.data && res.data.errors) setErrors(res.data.errors);
             }
@@ -40,7 +42,7 @@ const CreateProject = () => {
     }
 
     return (
-       <form className='form__login' onSubmit={onSubmit}>
+       <form className='form__login'>
             <div className='form__content-container'>
                 <h3 className='form__title'>Create a new project</h3>
                 <ul className="error-list">
@@ -76,8 +78,8 @@ const CreateProject = () => {
                     />
                 </div>   
                 <div className="form__button">
-                    <button id='cancel' data-dismiss="modal" className="form__button-button">Cancel</button>
-                    <button className="form__button-button" type="submit">Create</button>
+                    <button id='cancel' data-dismiss="modal" onClick={handleClose} className="form__button-button">Cancel</button>
+                    <button className="form__button-button" onClick={onSubmit} type="submit">Create</button>
                 </div>
            </div>
        </form>
