@@ -1,0 +1,11 @@
+.story-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.story-container__left{
+    display: flex;
+    flex-direction: row;
+}
