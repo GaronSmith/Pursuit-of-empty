@@ -38,28 +38,9 @@ const WorkSpace = () => {
     }, [dispatch, sessionUser,id])
 
     useEffect(() => {
-        // const newState = { stories: {}, columns: {}, columnOrder: [] }
-        
-        // if (preferences.names && stories && preferences.order) {
-        //     Object.keys(preferences.names).forEach(el => {
-        //         newState.columns[el] = {
-        //             id: el,
-        //             name: preferences.names[el],
-        //             storyIds: [],
-        //         }
-        //     })
-
-        //     Object.keys(stories).forEach(el => {
-        //         newState.stories[stories[el].id] = stories[el]
-        //         newState.columns[stories[el].workflowStatusId].storyIds.splice(stories[el].priority - 1, 0, [stories[el].id])
-        //     })
-        //     Object.keys(preferences.order).forEach(el => {
-        //         newState.columnOrder[el - 1] = preferences.order[el]
-        //     })
-        // }
+     
         const newState = dndDataObject(preferences.names, stories, preferences.order)
   
-        
         setDragState(newState)
 
     }, [preferences,stories])
