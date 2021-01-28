@@ -1,0 +1,34 @@
+.column-container{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    width: 25rem;
+}
+
+.column-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 40px;
+    width: 100%;
+    background-color: rgba(121,124,127,1);
+}
+
+.column-header__buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 1rem;
+}
+.column-header__bucket-title{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 1rem;
+    
+}
+
+.story{
+    display: flex;
+    justify-content: center;
+}

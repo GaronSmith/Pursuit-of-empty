@@ -1,8 +1,10 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
+const Sequelize = require('sequelize')
 
-const {Project, TeamMember} = require('../../db/models');
+const {Project, TeamMember, Story} = require('../../db/models');
+const story = require('../../db/models/story');
 const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
@@ -44,6 +46,63 @@ router.get('/:id/assigned', asyncHandler(async (req, res) => {
         }
     })
     return res.json({ projects })
+}))
+
+router.get('/stories/:id', asyncHandler(async (req,res) => {
+    const stories = await Story.findAll({
+        include:Project,
+        where: {
+            projectId: req.params.id
+        }
+    }) 
+    return res.json({ stories })
+}))
+
+router.put('/stories', asyncHandler(async (req,res) => {
+    const {id, priority, workflowStatusId, minusOne, plusOne} = req.body;
+    const story = await Story.findByPk(id)
+
+    if(minusOne.length){
+        await Story.update(
+            { priority: Sequelize.literal('priority - 1') },
+            {
+                where: {
+                    id: {
+                        [Sequelize.Op.in]: minusOne
+                    }
+                }
+            });
+    }
+
+    if(plusOne.length){
+        await Story.update(
+            { priority: Sequelize.literal('priority + 1') },
+            {
+                where: {
+                    id: {
+                        [Sequelize.Op.in]: plusOne
+                    }
+                }
+            });
+    }
+
+    if(story){
+        await story.update({priority, workflowStatusId})
+        res.json({story})
+    }
+}))
+
+router.get('/test/1', asyncHandler( async (req,res) => {
+    const ids = [1, 2, 3, 4]
+    const projects = await Story.update(
+        {priority: Sequelize.literal('priority - 1')},
+        {where: { 
+            id: {
+                [Sequelize.Op.in]: [1, 2, 3]
+            }
+        }
+    });
+    res.json({projects})
 }))
 
 module.exports = router;
