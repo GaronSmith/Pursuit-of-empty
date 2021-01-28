@@ -18,9 +18,6 @@ const WorkSpaceStory = ({story,index}) => {
         if(text === 'Completed') return 'Completed'
     }
 
-    useEffect(()=>{
-        // console.log(storyState)
-    })
 
     const onClick = (e) =>{
         e.preventDefault()
@@ -42,9 +39,6 @@ const WorkSpaceStory = ({story,index}) => {
             ...story,
             progress: newProgress
         }
-        console.log(newState)
-        // setStoryState(newState) 
-        // console.log(storyState)
         dispatch(updateProgress(newState))
     }
 
