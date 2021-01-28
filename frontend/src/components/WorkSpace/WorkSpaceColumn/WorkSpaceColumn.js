@@ -1,9 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus} from '@fortawesome/free-solid-svg-icons'
+import {Droppable} from 'react-beautiful-dnd'
+
 import './WorkSpaceColumn.css'
 import WorkSpaceStory from '../WorkSpaceStory/WorkSpaceStory'
 
-
+let i = 0
 const WorkSpaceColumn = ({column, stories}) => {
     return (
         <div className='column-container'>
@@ -16,13 +18,25 @@ const WorkSpaceColumn = ({column, stories}) => {
                 </div>
             </div>
             <div className='column-details'>
-                {stories.map(story => {
-                    return (
-                    <div key={story.id} className='story'>
-                        <WorkSpaceStory story={story} />
-                    </div>
-                    )
-                })}
+                <Droppable droppableId={column.id}>
+                    
+                        {(provided) => (
+                            <div className='stories' ref={provided.innerRef} {...provided.droppableProps}>
+                            
+                                {stories.map((story, index) => {
+                                    return (
+                                        // <div key={story.id} className='story'>
+                                        <WorkSpaceStory key={story.id} index={index} story={story} />
+                                        // </div>
+                                    )
+                                })}
+                                {provided.placeholder}
+                            </div>
+                        )}
+                    
+                    
+                </Droppable>
+                
             </div>
         </div>
     )

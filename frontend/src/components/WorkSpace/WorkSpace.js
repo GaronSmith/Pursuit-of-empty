@@ -66,17 +66,25 @@ const WorkSpace = () => {
 
     }, [preferences,stories])
 
+    const onDragEnd = (result) => {
+
+    }
+
     return(
         <div className='workspace-container'>
             <div className='sidebar'>
                 <WorkSpaceSideBar />
             </div>
             <div className='workspace'>
-                {dragState.columnOrder.map(columnId => {
-                    const column = dragState.columns[columnId]
-                    const stories = column.storyIds.map(storyId => dragState.stories[storyId])
-                        return < WorkSpaceColumn key={column.id} column={column} stories={stories}  />
-                })}
+                <DragDropContext
+                onDragEnd={onDragEnd}>
+                    {dragState.columnOrder.map(columnId => {
+                        const column = dragState.columns[columnId]
+                        const stories = column.storyIds.map(storyId => dragState.stories[storyId])
+                        return < WorkSpaceColumn key={column.id} column={column} stories={stories} />
+                    })}
+                </DragDropContext>
+                
             </div>
         </div>
     )
