@@ -25,9 +25,9 @@ const WorkSpaceColumn = ({column, stories}) => {
                             
                                 {stories.map((story, index) => {
                                     return (
-                                        // <div key={story.id} className='story'>
-                                        <WorkSpaceStory key={story.id} index={index} story={story} />
-                                        // </div>
+                                        <div key={story.id} className='story'>
+                                            <WorkSpaceStory key={story.id} index={index} story={story} />
+                                        </div>
                                     )
                                 })}
                                 {provided.placeholder}
