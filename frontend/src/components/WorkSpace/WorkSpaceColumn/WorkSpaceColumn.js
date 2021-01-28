@@ -5,7 +5,6 @@ import {Droppable} from 'react-beautiful-dnd'
 import './WorkSpaceColumn.css'
 import WorkSpaceStory from '../WorkSpaceStory/WorkSpaceStory'
 
-let i = 0
 const WorkSpaceColumn = ({column, stories}) => {
     return (
         <div className='column-container'>

@@ -4,7 +4,7 @@ import ProjectDetails from './ProjectDetails'
 import {getProjects} from '../../store/project'
 import {getAssignedProjects} from '../../store/assignedProjects'
 import './ProjectTiles.css'
-import { Redirect } from "react-router-dom"
+
 
 const ProjectsTiles = ({isLoaded}) => {
 
