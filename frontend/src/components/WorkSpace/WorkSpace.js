@@ -42,7 +42,7 @@ const WorkSpace = () => {
         const newState = dndDataObject(preferences.names, stories, preferences.order)
   
         setDragState(newState)
-
+        console.log(dragState)
     }, [preferences,stories])
 
     const onDragEnd = (result) => {
@@ -60,6 +60,7 @@ const WorkSpace = () => {
         
         if(start === finish){
             const newStoryIds = Array.from(start.storyIds)
+            const plusOne = newStoryIds.slice(destination.index, source.index)
             newStoryIds.splice(source.index, 1)
             newStoryIds.splice(destination.index, 0, draggableId)
 
@@ -76,14 +77,16 @@ const WorkSpace = () => {
                 }
             }
             setDragState(newState)
-            dispatch(storyDnD(draggableId, destination.index+1, destination.droppableId ))
+            dispatch(storyDnD(draggableId, destination.index+1, destination.droppableId, plusOne, [] ))
             
             return
         }
         const startStoryIds = Array.from(start.storyIds)
+        const minusOne = startStoryIds.slice(source.index+1)
         startStoryIds.splice(source.index, 1)
 
         const finishStoryIds = Array.from(finish.storyIds)
+        const plusOne = finishStoryIds.slice(destination.index)
         finishStoryIds.splice(destination.index, 0, draggableId)
 
         const newStart = {
@@ -104,7 +107,7 @@ const WorkSpace = () => {
             }
         }
         setDragState(newState)
-        dispatch(storyDnD(draggableId, destination.index+1, destination.droppableId ))
+        dispatch(storyDnD(draggableId, destination.index + 1, destination.droppableId, plusOne, minusOne))
         
     }
 

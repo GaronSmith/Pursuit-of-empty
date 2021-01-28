@@ -1,7 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
-const { Op } = require('sequelize')
+const Sequelize = require('sequelize')
 
 const {Project, TeamMember, Story} = require('../../db/models');
 const story = require('../../db/models/story');
@@ -59,8 +59,32 @@ router.get('/stories/:id', asyncHandler(async (req,res) => {
 }))
 
 router.put('/stories', asyncHandler(async (req,res) => {
-    const {id, priority, workflowStatusId, minusOne, pluseOne} = req.body;
+    const {id, priority, workflowStatusId, minusOne, plusOne} = req.body;
     const story = await Story.findByPk(id)
+
+    if(minusOne.length){
+        await Story.update(
+            { priority: Sequelize.literal('priority - 1') },
+            {
+                where: {
+                    id: {
+                        [Sequelize.Op.in]: minusOne
+                    }
+                }
+            });
+    }
+
+    if(plusOne.length){
+        await Story.update(
+            { priority: Sequelize.literal('priority + 1') },
+            {
+                where: {
+                    id: {
+                        [Sequelize.Op.in]: plusOne
+                    }
+                }
+            });
+    }
 
     if(story){
         await story.update({priority, workflowStatusId})
@@ -68,12 +92,13 @@ router.put('/stories', asyncHandler(async (req,res) => {
     }
 }))
 
-router.get('/test', asyncHandler( async (req,res) => {
+router.get('/test/1', asyncHandler( async (req,res) => {
     const ids = [1, 2, 3, 4]
-    const projects = await Project.findAll({
-        where: {
+    const projects = await Story.update(
+        {priority: Sequelize.literal('priority - 1')},
+        {where: { 
             id: {
-                [Op.in]: [1, 2, 3, 4]
+                [Sequelize.Op.in]: [1, 2, 3]
             }
         }
     });

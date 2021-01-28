@@ -23,8 +23,8 @@ export const getStories = (id) => async (dispatch) => {
     return response
 }
 
-export const storyDnD = (id, priority, workflowStatusId) => async (dispatch) => {
-    const body = {id, priority, workflowStatusId}
+export const storyDnD = (id, priority, workflowStatusId, plusOne, minusOne) => async (dispatch) => {
+    const body = {id, priority, workflowStatusId, plusOne, minusOne}
     const response = await fetch(`/api/projects/stories/`,{
         method:'PUT',
         body: JSON.stringify(body),
