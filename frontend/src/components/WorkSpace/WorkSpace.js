@@ -76,21 +76,50 @@ const WorkSpace = () => {
             destination.index === source.index
         ) return 
 
-        const column = dragState.columns[source.droppableId]
-        const newStoryIds = Array.from(column.storyIds)
-        newStoryIds.splice(source.index, 1)
-        newStoryIds.splice(destination.index, 0, draggableId)
-
-        const newColumn = {
-            ...column,
-            storyIds:newStoryIds
-        }
+        const start = dragState.columns[source.droppableId]
+        const finish = dragState.columns[destination.droppableId]
         
+        if(start === finish){
+            const newStoryIds = Array.from(start.storyIds)
+            newStoryIds.splice(source.index, 1)
+            newStoryIds.splice(destination.index, 0, draggableId)
+
+            const newColumn = {
+                ...start,
+                storyIds: newStoryIds
+            }
+
+            const newState = {
+                ...dragState,
+                columns: {
+                    ...dragState.columns,
+                    [newColumn.id]: newColumn
+                }
+            }
+            setDragState(newState)
+            return
+        }
+        const startStoryIds = Array.from(start.storyIds)
+        startStoryIds.splice(source.index, 1)
+
+        const finishStoryIds = Array.from(finish.storyIds)
+        finishStoryIds.splice(destination.index, 0, draggableId)
+
+        const newStart = {
+            ...start,
+            storyIds: startStoryIds
+        }
+        const newFinish = {
+            ...finish,
+            storyIds: finishStoryIds
+        }
+
         const newState = {
             ...dragState,
             columns: {
                 ...dragState.columns,
-                [newColumn.id]: newColumn
+                [newStart.id]: newStart,
+                [newFinish.id]: newFinish
             }
         }
         setDragState(newState)
