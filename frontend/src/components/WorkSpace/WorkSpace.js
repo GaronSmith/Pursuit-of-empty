@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import {DragDropContext} from 'react-beautiful-dnd'
 
 import WorkSpaceSideBar from './WorkSpaceSideBar'
 import { getPreferences }from '../../store/preferences'
