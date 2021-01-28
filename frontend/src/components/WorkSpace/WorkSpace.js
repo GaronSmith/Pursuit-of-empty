@@ -9,7 +9,8 @@ import './WorkSpace.css'
 import { getProjects } from '../../store/project'
 import { getAssignedProjects } from '../../store/assignedProjects'
 import WorkSpaceColumn from './WorkSpaceColumn'
-import { getStories } from '../../store/stories'
+import { getStories, storyDnD } from '../../store/stories'
+import { dndDataObject } from '../../utils/workspaceUtils'
 
 
 
@@ -37,29 +38,27 @@ const WorkSpace = () => {
     }, [dispatch, sessionUser,id])
 
     useEffect(() => {
-        const newState = { stories: {}, columns: {}, columnOrder: [] }
+        // const newState = { stories: {}, columns: {}, columnOrder: [] }
         
-        if(preferences.names) {
-            Object.keys(preferences.names).forEach(el => {
-                newState.columns[el] = {
-                    id: el,
-                    name: preferences.names[el],
-                    storyIds: [],
-                }
-            })
-        }
-        if(stories){
-            Object.keys(stories).forEach(el => {
-                newState.stories[stories[el].id] = stories[el]
-                newState.columns[stories[el].workflowStatusId].storyIds.splice(stories[el].priority - 1, 0, [stories[el].id])
-            })
-        }
+        // if (preferences.names && stories && preferences.order) {
+        //     Object.keys(preferences.names).forEach(el => {
+        //         newState.columns[el] = {
+        //             id: el,
+        //             name: preferences.names[el],
+        //             storyIds: [],
+        //         }
+        //     })
 
-        if(preferences.order){
-            Object.keys(preferences.order).forEach(el => {
-                newState.columnOrder[el-1] = preferences.order[el]
-            })
-        }
+        //     Object.keys(stories).forEach(el => {
+        //         newState.stories[stories[el].id] = stories[el]
+        //         newState.columns[stories[el].workflowStatusId].storyIds.splice(stories[el].priority - 1, 0, [stories[el].id])
+        //     })
+        //     Object.keys(preferences.order).forEach(el => {
+        //         newState.columnOrder[el - 1] = preferences.order[el]
+        //     })
+        // }
+        const newState = dndDataObject(preferences.names, stories, preferences.order)
+  
         
         setDragState(newState)
 
@@ -96,6 +95,8 @@ const WorkSpace = () => {
                 }
             }
             setDragState(newState)
+            dispatch(storyDnD(draggableId, destination.index+1, destination.droppableId ))
+            
             return
         }
         const startStoryIds = Array.from(start.storyIds)
@@ -122,6 +123,8 @@ const WorkSpace = () => {
             }
         }
         setDragState(newState)
+        dispatch(storyDnD(draggableId, destination.index+1, destination.droppableId ))
+        
     }
 
     return(
