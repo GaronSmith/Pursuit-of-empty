@@ -6,6 +6,7 @@ import './WorkSpaceStory.css'
 import { useDispatch } from 'react-redux'
 import { updateProgress } from '../../../store/stories'
 import { useEffect, useState } from 'react'
+import StoryModal from '../StoryModal/StoryModal'
 const WorkSpaceStory = ({story,index}) => {
     const dispatch = useDispatch();
 
@@ -47,9 +48,10 @@ const WorkSpaceStory = ({story,index}) => {
             {(provided) => (
                 <div className='story-container' ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
                     <div className='story-container__left'>
-                        <button className='story-button__more'>
+                        {/* <button className='story-button__more'>
                             <FontAwesomeIcon className='story-icon' icon={faBars} />
-                        </button>
+                        </button> */}
+                        <StoryModal story={story}/>
                         <h3 className='story-name'>{story.name}</h3>
                     </div>
                     <div className='story-container__right'>
