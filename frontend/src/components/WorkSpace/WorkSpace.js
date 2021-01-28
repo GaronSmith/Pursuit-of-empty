@@ -61,6 +61,7 @@ const WorkSpace = () => {
         }
         
         setDragState(newState)
+        console.log(dragState)
 
     }, [preferences,stories])
 

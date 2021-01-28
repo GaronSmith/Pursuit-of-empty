@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus} from '@fortawesome/free-solid-svg-icons'
 import './WorkSpaceColumn.css'
+import WorkSpaceStory from '../WorkSpaceStory/WorkSpaceStory'
 
 
 const WorkSpaceColumn = ({column, stories}) => {
@@ -13,6 +14,15 @@ const WorkSpaceColumn = ({column, stories}) => {
                         <FontAwesomeIcon className='project-icon' icon={faPlus} />  Add Story
                     </button>
                 </div>
+            </div>
+            <div className='column-details'>
+                {stories.map(story => {
+                    return (
+                    <div key={story.id} className='story'>
+                        <WorkSpaceStory story={story} />
+                    </div>
+                    )
+                })}
             </div>
         </div>
     )

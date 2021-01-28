@@ -1,6 +1,6 @@
 .column-container{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     margin: 1rem;
     width: 400px;
 }
