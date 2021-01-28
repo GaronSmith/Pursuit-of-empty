@@ -3,7 +3,51 @@ import { faBars } from '@fortawesome/free-solid-svg-icons'
 import {Draggable} from 'react-beautiful-dnd'
 
 import './WorkSpaceStory.css'
+import { useDispatch } from 'react-redux'
+import { updateProgress } from '../../../store/stories'
+import { useEffect, useState } from 'react'
 const WorkSpaceStory = ({story,index}) => {
+    const dispatch = useDispatch();
+
+    // const [storyState, setStoryState] = useState(story)
+
+    const buttonText = (text) => {
+        if(text === null) return 'Start'
+        if(text === 'Start') return 'Complete'
+        if(text === 'Complete') return 'Completed'
+        if(text === 'Completed') return 'Completed'
+    }
+
+    useEffect(()=>{
+        // console.log(storyState)
+    })
+
+    const onClick = (e) =>{
+        e.preventDefault()
+        let newProgress
+        switch(story.progress){
+            case null:
+                newProgress = 'Start'
+                console.log('hit')
+                break
+            case 'Start':
+                newProgress = 'Complete'
+                break
+            case 'Complete':
+                newProgress = 'Completed'
+                break
+            }
+
+        const newState = {
+            ...story,
+            progress: newProgress
+        }
+        console.log(newState)
+        // setStoryState(newState) 
+        // console.log(storyState)
+        dispatch(updateProgress(newState))
+    }
+
     return (
         <Draggable draggableId={story.id.toString()} index={index}>
             {(provided) => (
@@ -15,11 +59,10 @@ const WorkSpaceStory = ({story,index}) => {
                         <h3 className='story-name'>{story.name}</h3>
                     </div>
                     <div className='story-container__right'>
-                        <button className='story-container__right-button'> start </button>
+                        <button className='story-container__right-button' value={story.progress} onClick={onClick}> {buttonText(story.progress)} </button>
                     </div>
 
                 </div>
-
             )}
            
         </Draggable>

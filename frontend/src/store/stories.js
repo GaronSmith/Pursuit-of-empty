@@ -19,7 +19,12 @@ const updateStories = (story) => {
 
 export const getStories = (id) => async (dispatch) => {
     const response = await fetch(`/api/projects/stories/${id}`)
-    dispatch(setStories(response.data.stories))
+    const obj = {}
+    Object.keys(response.data.stories).forEach(el => {
+        obj[response.data.stories[el].id] = response.data.stories[el]
+    })
+    console.log(obj)
+    dispatch(setStories(obj))
     return response
 }
 
@@ -36,6 +41,18 @@ export const storyDnD = (id, priority, workflowStatusId, plusOne, minusOne) => a
     return response
 }
 
+export const updateProgress = (story) => async (dispatch) => {
+    const body = story
+    const response = await fetch(`/api/projects/stories/${story.id}`,{
+        method: 'PUT',
+        body:JSON.stringify(body),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    dispatch(updateStories(response.data.story))
+    return response
+}
 const initialState = {};
 
 const storiesReducer = (state = initialState, action) => {
@@ -49,6 +66,7 @@ const storiesReducer = (state = initialState, action) => {
                 ...state, 
                 [action.story.id]:action.story
             }
+            return newState
         default:
             return state
     }

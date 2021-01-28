@@ -92,17 +92,14 @@ router.put('/stories', asyncHandler(async (req,res) => {
     }
 }))
 
-router.get('/test/1', asyncHandler( async (req,res) => {
-    const ids = [1, 2, 3, 4]
-    const projects = await Story.update(
-        {priority: Sequelize.literal('priority - 1')},
-        {where: { 
-            id: {
-                [Sequelize.Op.in]: [1, 2, 3]
-            }
-        }
-    });
-    res.json({projects})
+router.put('/stories/:id', asyncHandler( async (req,res) => {
+    const story = await Story.findByPk(req.body.id)
+    console.log(story)
+    if(story){
+        await story.update(req.body)
+        return res.json({story})
+    }
+
 }))
 
 module.exports = router;

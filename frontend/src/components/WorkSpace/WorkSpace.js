@@ -42,7 +42,7 @@ const WorkSpace = () => {
         const newState = dndDataObject(preferences.names, stories, preferences.order)
   
         setDragState(newState)
-
+        console.log(dragState)
     }, [preferences,stories])
 
     const onDragEnd = (result) => {
