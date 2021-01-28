@@ -15,6 +15,18 @@ export const getStories = (id) => async (dispatch) => {
     return response
 }
 
+export const storyDnD = (id) => async (dispatch) => {
+    const response = await fetch(`/api/projects/stories/${id}`,{
+        method:'PUT',
+        body: 'test',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    dispatch(setStories(response.data.stories))
+    return response
+}
+
 const initialState = {};
 
 const storiesReducer = (state = initialState, action) => {
