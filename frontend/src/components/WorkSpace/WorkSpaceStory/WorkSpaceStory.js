@@ -7,12 +7,12 @@ const WorkSpaceStory = ({story}) => {
         <div className='story-container'>
             <div className='story-container__left'>
                 <button className='story-button__more'>
-                    <FontAwesomeIcon className='project-icon' icon={faBars} />
+                    <FontAwesomeIcon className='story-icon' icon={faBars} />
                 </button>
-                <h3>{story.name}</h3>
+                <h3 className='story-name'>{story.name}</h3>
             </div>
             <div className='story-container__right'>
-                <button> start </button>
+                <button className='story-container__right-button'> start </button>
             </div>
             
         </div>
