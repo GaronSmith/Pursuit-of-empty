@@ -18,6 +18,11 @@ const StoryModal = ({story}) => {
         setShowModal(false)
     };
 
+    const onClose = async () => {
+        dispatch(removeTasks())
+        setShowModal(false)
+    }
+
     return (
         <>
             <button
@@ -26,10 +31,7 @@ const StoryModal = ({story}) => {
                 <FontAwesomeIcon className='story-icon' icon={faBars} />
             </button>
             {showModal && (
-                <Modal onClose={async () => {
-                    dispatch(removeTasks()) 
-                    setShowModal(false)}
-                    }>
+                <Modal onClose={onClose}>
                     <StoryForm story={story} handleClose={handleClose} />
                 </Modal>
             )}

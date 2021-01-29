@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getTasks } from '../../../store/tasks';
+import Task from '../Task';
 import './StoryForm.css'
 
 const StoryForm = ({story}) => {
@@ -9,7 +10,11 @@ const StoryForm = ({story}) => {
     const [description, setDescription] = useState(story.description)
     const [points, setPoints] = useState(story.points)
     const [code, setCode] = useState(story.code)
+    
+    const tasks = useSelector(state => state.tasks)
+    
     const dispatch = useDispatch();
+
     
     useEffect(() => {
         dispatch(getTasks(story.id))
@@ -82,7 +87,9 @@ const StoryForm = ({story}) => {
                 />
             </div>
             <div className='task-container'>
-
+                {Object.keys(tasks).map(key => {
+                    return <Task key={key} task={tasks[key]} />
+                })}
             </div>
         </form>
     )
