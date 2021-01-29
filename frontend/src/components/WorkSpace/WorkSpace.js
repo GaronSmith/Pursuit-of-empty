@@ -41,7 +41,6 @@ const WorkSpace = () => {
      
         const newState = dndDataObject(preferences.names, stories, preferences.order)
         setDragState(newState)
-        console.log('"""',dragState)
     }, [preferences,stories])
 
     const onDragEnd = (result) => {
@@ -76,7 +75,8 @@ const WorkSpace = () => {
                     [newColumn.id]: newColumn
                 }
             }
-            // setDragState(newState)
+            console.log('after same', newState)
+            setDragState(newState)
             dispatch(storyDnD(draggableId, destination.index+1, destination.droppableId, plusOne, [] ))
             
             return
@@ -107,9 +107,9 @@ const WorkSpace = () => {
             }
         }
         
-        // setDragState(newState)
+        setDragState(newState)
         dispatch(storyDnD(draggableId, destination.index + 1, destination.droppableId, plusOne, minusOne))
-        
+        console.log('after diff', dragState)
     }
 
     return(
