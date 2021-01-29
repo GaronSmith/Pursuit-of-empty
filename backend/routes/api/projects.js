@@ -119,6 +119,15 @@ router.put('/stories/:id', asyncHandler( async (req,res) => {
 
 }))
 
+router.delete('/stories/:id', asyncHandler( async (req,res) => {
+    const story = await Story.destroy({
+        where:{
+            id:req.params.id
+        }
+    })
+    res.json('deleted')
+}))
+
 router.get('/tasks/:id', asyncHandler (async (req, res) => {
     const tasks = await Task.findAll({
         where: {

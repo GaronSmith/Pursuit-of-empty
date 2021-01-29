@@ -2,6 +2,7 @@ import { fetch } from './csrf'
 
 const SET_STORIES = 'stories/setStories'
 const UPDATE_STORIES ='stories/updateStories'
+const DELETE_STORY = 'stories/delStory'
 
 const setStories = (stories) => {
     return {
@@ -14,6 +15,13 @@ const updateStories = (story) => {
     return{
         type: UPDATE_STORIES,
         story
+    }
+}
+
+const delStory = (id) => {
+    return {
+        type:DELETE_STORY,
+        id
     }
 }
 
@@ -57,6 +65,13 @@ export const updateProgress = (story) => async (dispatch) => {
     dispatch(updateStories(response.data.story))
     return response
 }
+
+export const deleteStory = (id) => async (dispatch) => {
+    const story = await fetch(`/api/projects/stories/${id}`,{
+        method:'DELETE',
+    })
+    dispatch(delStory(id))
+}
 const initialState = {};
 
 const storiesReducer = (state = initialState, action) => {
@@ -70,6 +85,10 @@ const storiesReducer = (state = initialState, action) => {
                 ...state, 
                 [action.story.id]:action.story
             }
+            return newState
+        case DELETE_STORY:
+            newState = {...state}
+            delete newState[action.id]
             return newState
         default:
             return state
