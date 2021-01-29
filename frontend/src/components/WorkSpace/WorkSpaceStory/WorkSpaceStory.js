@@ -5,7 +5,7 @@ import {Draggable} from 'react-beautiful-dnd'
 import './WorkSpaceStory.css'
 const WorkSpaceStory = ({story,index}) => {
     return (
-        <Draggable draggableId={story.id.toString()} index={index}>
+        <Draggable draggableId={story.id.toString()} key={story.id} index={index}>
             {(provided) => (
                 <div className='story-container' ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
                     <div className='story-container__left'>

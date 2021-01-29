@@ -19,8 +19,11 @@ const updateStories = (story) => {
 
 export const getStories = (id) => async (dispatch) => {
     const response = await fetch(`/api/projects/stories/${id}`)
-    dispatch(setStories(response.data.stories))
-    return response
+    const obj = {}
+    Object.keys(response.data.stories).forEach(el => {
+        obj[response.data.stories[el].id] = response.data.stories[el]
+    })
+    dispatch(setStories(obj))
 }
 
 export const storyDnD = (id, priority, workflowStatusId, plusOne, minusOne) => async (dispatch) => {
@@ -32,7 +35,12 @@ export const storyDnD = (id, priority, workflowStatusId, plusOne, minusOne) => a
             'Content-Type': 'application/json'
         }
     })
-    dispatch(updateStories(response.data.story))
+    const obj = {}
+    Object.keys(response.data.obj).forEach(el => {
+        obj[response.data.obj[el].id] = response.data.obj[el]
+    })
+    console.log('thunk',obj)
+    dispatch(setStories(obj))
     return response
 }
 
@@ -49,6 +57,7 @@ const storiesReducer = (state = initialState, action) => {
                 ...state, 
                 [action.story.id]:action.story
             }
+            return newState
         default:
             return state
     }
