@@ -36,7 +36,12 @@ export const storyDnD = (id, priority, workflowStatusId, plusOne, minusOne) => a
             'Content-Type': 'application/json'
         }
     })
-    dispatch(updateStories(response.data.story))
+    const obj = {}
+    Object.keys(response.data.obj).forEach(el => {
+        obj[response.data.obj[el].id] = response.data.obj[el]
+    })
+    console.log('thunk',obj)
+    dispatch(setStories(obj))
     return response
 }
 

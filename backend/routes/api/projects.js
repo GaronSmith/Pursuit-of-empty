@@ -61,7 +61,12 @@ router.get('/stories/:id', asyncHandler(async (req,res) => {
 router.put('/stories', asyncHandler(async (req,res) => {
     const {id, priority, workflowStatusId, minusOne, plusOne} = req.body;
     const story = await Story.findByPk(id)
-
+    let minuses = []
+    let pluses =[]
+    let obj
+    if (story) {
+        await story.update({ priority, workflowStatusId: parseInt(workflowStatusId) })
+    }
     if(minusOne.length){
         await Story.update(
             { priority: Sequelize.literal('priority - 1') },
@@ -72,6 +77,13 @@ router.put('/stories', asyncHandler(async (req,res) => {
                     }
                 }
             });
+        minuses = await Story.findAll({
+            where:{
+                id: {
+                    [Sequelize.Op.in]: minusOne
+                }
+            }
+        })
     }
 
     if(plusOne.length){
@@ -84,12 +96,18 @@ router.put('/stories', asyncHandler(async (req,res) => {
                     }
                 }
             });
+        pluses = await Story.findAll({
+            where: {
+                id: {
+                    [Sequelize.Op.in]: plusOne
+                }
+            }
+        })
     }
-
-    if(story){
-        await story.update({priority, workflowStatusId})
-        res.json({story})
-    }
+    const arrObj = [...pluses, ...minuses, story]
+   
+    obj= Object.assign({}, arrObj)
+    res.json({obj})
 }))
 
 router.put('/stories/:id', asyncHandler( async (req,res) => {
