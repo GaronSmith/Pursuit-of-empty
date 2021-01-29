@@ -1,9 +1,9 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
-const Sequelize = require('sequelize')
+const Sequelize = require('sequelize');
 
-const {Project, TeamMember, Story} = require('../../db/models');
+const {Project, TeamMember, Story, Task} = require('../../db/models');
 const story = require('../../db/models/story');
 const { handleValidationErrors } = require('../../utils/validation');
 
@@ -112,12 +112,22 @@ router.put('/stories', asyncHandler(async (req,res) => {
 
 router.put('/stories/:id', asyncHandler( async (req,res) => {
     const story = await Story.findByPk(req.body.id)
-    console.log(story)
     if(story){
         await story.update(req.body)
         return res.json({story})
     }
 
+}))
+
+router.get('/tasks/:id', asyncHandler (async (req, res) => {
+    const tasks = await Task.findAll({
+        where: {
+            storyId: req.params.id
+        }
+    })
+    if(tasks){
+        res.json({tasks})
+    }
 }))
 
 module.exports = router;

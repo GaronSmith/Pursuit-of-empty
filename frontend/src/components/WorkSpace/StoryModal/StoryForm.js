@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { getTasks } from '../../../store/tasks';
 import './StoryForm.css'
 
 const StoryForm = ({story}) => {
@@ -7,6 +9,11 @@ const StoryForm = ({story}) => {
     const [description, setDescription] = useState(story.description)
     const [points, setPoints] = useState(story.points)
     const [code, setCode] = useState(story.code)
+    const dispatch = useDispatch();
+    
+    useEffect(() => {
+        dispatch(getTasks(story.id))
+    }, [dispatch])
     return (
         <form className='form__story'>
             <div className='form__content-container'>
@@ -32,7 +39,7 @@ const StoryForm = ({story}) => {
                     value={points}
                     onChange={(e) => setPoints(e.target.value)}>
                     <option value={null}>Not Started</option>
-                    <option selected='selected' value='Start'>Started</option>
+                    <option value='Start'>Started</option>
                     <option value='Complete'>Completed</option>
                     <option value={4}>4 - extremely difficult</option>
                 </select>
@@ -75,7 +82,7 @@ const StoryForm = ({story}) => {
                 />
             </div>
             <div className='task-container'>
-                
+
             </div>
         </form>
     )

@@ -1,4 +1,4 @@
-import { fetch } from './csrf'
+import { fetch } from './csrf';
 
 const SET_TASKS = 'tasks/getTasks'
 

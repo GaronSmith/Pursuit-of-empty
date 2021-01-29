@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
     assignedProjects: assignedProjectReducer,
     preferences: preferencesReducer,
     stories: storiesReducer,
-    tasks: tasksReducer
+    tasks: tasksReducer,
 });
 
 let enhancer;
