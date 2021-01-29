@@ -11,9 +11,9 @@ const TaskForm = ({storyId}) => {
         e.preventDefault()
         dispatch(createTask(name, storyId))
     }
-    console.log(typeof name)
+
     return (
-        <div onSubmit={onSubmit} className='taskform-container'>
+        <div className='taskform-container'>
             <input className='taskform-input' value={name} onChange={(e) => setName(e.target.value) }type='text' placeholder='Add a task'></input>
             <button className='taskform-add' onClick={onSubmit}>Add</button>
         </div>

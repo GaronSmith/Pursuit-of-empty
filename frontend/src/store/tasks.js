@@ -27,11 +27,12 @@ const addTask = (task) => {
 export const createTask = (name,storyId) => async (dispatch) => {
     const completed = false;
     const body = {name, storyId, completed}
+    console.log('thunk', body)
     const response = await fetch('/api/projects/tasks',{
         method:'POST',
         body: JSON.stringify(body),
     })
-    dispatch(createTask(response.data.task))
+    dispatch(addTask(response.data.task))
 }
 
 export const getTasks = (id) => async (dispatch) => {
