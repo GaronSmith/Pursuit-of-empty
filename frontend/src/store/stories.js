@@ -24,6 +24,7 @@ export const getStories = (id) => async (dispatch) => {
         obj[response.data.stories[el].id] = response.data.stories[el]
     })
     dispatch(setStories(obj))
+    return response
 }
 
 export const storyDnD = (id, priority, workflowStatusId, plusOne, minusOne) => async (dispatch) => {
@@ -44,6 +45,18 @@ export const storyDnD = (id, priority, workflowStatusId, plusOne, minusOne) => a
     return response
 }
 
+export const updateProgress = (story) => async (dispatch) => {
+    const body = story
+    const response = await fetch(`/api/projects/stories/${story.id}`,{
+        method: 'PUT',
+        body:JSON.stringify(body),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    dispatch(updateStories(response.data.story))
+    return response
+}
 const initialState = {};
 
 const storiesReducer = (state = initialState, action) => {

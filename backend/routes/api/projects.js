@@ -1,9 +1,9 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
-const Sequelize = require('sequelize')
+const Sequelize = require('sequelize');
 
-const {Project, TeamMember, Story} = require('../../db/models');
+const {Project, TeamMember, Story, Task} = require('../../db/models');
 const story = require('../../db/models/story');
 const { handleValidationErrors } = require('../../utils/validation');
 
@@ -110,17 +110,39 @@ router.put('/stories', asyncHandler(async (req,res) => {
     res.json({obj})
 }))
 
-router.get('/test/1', asyncHandler( async (req,res) => {
-    const ids = [1, 2, 3, 4]
-    const projects = await Story.update(
-        {priority: Sequelize.literal('priority - 1')},
-        {where: { 
-            id: {
-                [Sequelize.Op.in]: [1, 2, 3]
-            }
+router.put('/stories/:id', asyncHandler( async (req,res) => {
+    const story = await Story.findByPk(req.body.id)
+    if(story){
+        await story.update(req.body)
+        return res.json({story})
+    }
+
+}))
+
+router.get('/tasks/:id', asyncHandler (async (req, res) => {
+    const tasks = await Task.findAll({
+        where: {
+            storyId: req.params.id
         }
-    });
-    res.json({projects})
+    })
+    if(tasks){
+        res.json({tasks})
+    }
+}))
+
+router.post('/tasks', asyncHandler( async (req,res) => {
+    const{completed, name, storyId} = req.body
+    const task = await Task.create({ completed, name, storyId})
+    res.json({task})
+}))
+
+router.delete('/tasks/:id', asyncHandler(async (req,res) => {
+    const task = await Task.destroy({
+        where:{
+            id:req.params.id
+        }
+    })
+    res.json('deleted')
 }))
 
 module.exports = router;

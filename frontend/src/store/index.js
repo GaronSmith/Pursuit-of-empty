@@ -6,6 +6,7 @@ import projectReducer from './project';
 import assignedProjectReducer from './assignedProjects'
 import preferencesReducer from './preferences'
 import storiesReducer from './stories';
+import tasksReducer from './tasks';
 
 
 const rootReducer = combineReducers({
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
     projects: projectReducer,
     assignedProjects: assignedProjectReducer,
     preferences: preferencesReducer,
-    stories: storiesReducer
+    stories: storiesReducer,
+    tasks: tasksReducer,
 });
 
 let enhancer;

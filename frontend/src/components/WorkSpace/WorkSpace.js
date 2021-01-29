@@ -48,6 +48,7 @@ const WorkSpace = () => {
 
     const onDragEnd = (result) => {
         const {destination, source, draggableId} = result;
+       console.log(dragState)
 
         if(!destination) return
 
@@ -108,6 +109,7 @@ const WorkSpace = () => {
                 [newFinish.id]: newFinish
             }
         }
+        
         setDragState(newState)
         dispatch(storyDnD(draggableId, destination.index, destination.droppableId, plusOne, minusOne))
         

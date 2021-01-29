@@ -1,0 +1,37 @@
+.task-container{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4px;
+    overflow: auto;
+}
+
+.task-content, .task-content-left{
+    display: flex;
+    flex-direction: row;
+    color:rgb(197,198,200);
+    background-color: rgb(100,102,104);
+    border-radius: 5px;
+}
+
+.task-content{
+    justify-content: space-between;
+    
+}
+
+.task-content-right{
+    display: flex;
+    flex-direction: row;
+}
+
+.delete{
+    align-self: center;
+    background: none;
+    border:none;
+    color:rgb(143,1,45)
+}
+
+.task-checkbox{
+    align-self: center;
+    margin-right: .5rem;
+    background-color: rgb(151,154,156);
+}
