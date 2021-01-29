@@ -1,11 +1,18 @@
 import { fetch } from './csrf';
 
 const SET_TASKS = 'tasks/getTasks'
+const REMOVE_TASKS = 'tasks/emptyTasks'
 
 const setTasks = (tasks) => {
     return {
         type:SET_TASKS,
         tasks
+    }
+}
+
+const emptyTasks = () => {
+    return {
+        type:REMOVE_TASKS
     }
 }
 
@@ -19,6 +26,10 @@ export const getTasks = (id) => async (dispatch) => {
     dispatch(setTasks(obj))
 }
 
+export const removeTasks = () => async (dispatch) => {
+    dispatch(emptyTasks())
+}
+
 const initialState = {};
 
 const tasksReducer = (state = initialState, action) => {
@@ -26,6 +37,9 @@ const tasksReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_TASKS:
             newState = { ...state, ...action.tasks }
+            return newState
+        case REMOVE_TASKS:
+            newState = {}
             return newState
         default:
             return state
