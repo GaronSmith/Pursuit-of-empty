@@ -10,6 +10,7 @@ const TaskForm = ({storyId}) => {
     const onSubmit = (e) => {
         e.preventDefault()
         dispatch(createTask(name, storyId))
+        setName('')
     }
 
     return (

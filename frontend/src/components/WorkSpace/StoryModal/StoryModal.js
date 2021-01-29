@@ -32,7 +32,7 @@ const StoryModal = ({story}) => {
             </button>
             {showModal && (
                 <Modal onClose={onClose}>
-                    <StoryForm story={story} handleClose={handleClose} />
+                    <StoryForm className= 'modal' story={story} handleClose={handleClose} />
                 </Modal>
             )}
         </>
