@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { updateProgress } from '../../../store/stories';
+import { deleteStory, updateProgress } from '../../../store/stories';
 import { getTasks } from '../../../store/tasks';
 import Task from '../Task';
 import TaskForm from '../TaskForm';
@@ -16,6 +16,12 @@ const StoryForm = ({story}) => {
     const tasks = useSelector(state => state.tasks)
     
     const dispatch = useDispatch();
+
+    const onDelete = (e) => {
+        e.preventDefault()
+
+        dispatch(deleteStory(story.id))
+    }
 
     const onSubmit = (e) =>{
         e.preventDefault();
@@ -102,7 +108,7 @@ const StoryForm = ({story}) => {
                 />
             </div>
             <div className="form__button">
-                <button id='cancel' data-dismiss="modal"  className="form__button-button">Delete</button>
+                <button id='cancel' data-dismiss="modal"  onClick={onDelete} className="form__button-button">Delete</button>
                 <button className="form__button-button" onClick={onSubmit} type="submit">Save Story Details</button>
             </div>
             <div className='task-container'>
