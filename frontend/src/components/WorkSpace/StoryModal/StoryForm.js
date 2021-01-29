@@ -88,6 +88,9 @@ const StoryForm = ({story}) => {
                 />
             </div>
             <div className='task-container'>
+                <div className='task-header'>
+                    <label className='form-label'>Tasks</label>
+                </div>
                 {Object.keys(tasks).map(key => {
                     return <Task key={key} task={tasks[key]} />
                 })}

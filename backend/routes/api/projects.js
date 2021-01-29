@@ -130,4 +130,9 @@ router.get('/tasks/:id', asyncHandler (async (req, res) => {
     }
 }))
 
+router.post('/tasks', asyncHandler( async (req,res) => {
+    const task = await Task.create(req.body)
+    res.json({task})
+}))
+
 module.exports = router;
