@@ -38,12 +38,6 @@ const WorkSpace = () => {
     }, [dispatch, sessionUser,id])
 
     useEffect(() => {
-<<<<<<< HEAD
-     
-        const newState = dndDataObject(preferences.names, stories, preferences.order)
-        setDragState(newState)
-    }, [preferences,stories])
-=======
         let newState
         if(preferences && stories){
              newState = dndDataObject(preferences.names, stories, preferences.order)
@@ -51,7 +45,6 @@ const WorkSpace = () => {
         setDragState(newState)
         
     }, [preferences,stories, dispatch])
->>>>>>> main
 
     const onDragEnd = (result) => {
         const {destination, source, draggableId} = result;
@@ -118,13 +111,8 @@ const WorkSpace = () => {
         }
         
         setDragState(newState)
-<<<<<<< HEAD
-        dispatch(storyDnD(draggableId, destination.index + 1, destination.droppableId, plusOne, minusOne))
-        console.log('after diff', dragState)
-=======
         dispatch(storyDnD(draggableId, destination.index, destination.droppableId, plusOne, minusOne))
         
->>>>>>> main
     }
     return(
         <div className='workspace-container'>
