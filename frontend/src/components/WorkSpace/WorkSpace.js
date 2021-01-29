@@ -40,13 +40,13 @@ const WorkSpace = () => {
     useEffect(() => {
      
         const newState = dndDataObject(preferences.names, stories, preferences.order)
-  
         setDragState(newState)
-        console.log(dragState)
+        console.log('"""',dragState)
     }, [preferences,stories])
 
     const onDragEnd = (result) => {
         const {destination, source, draggableId} = result;
+       console.log(dragState)
 
         if(!destination) return
 
@@ -106,6 +106,7 @@ const WorkSpace = () => {
                 [newFinish.id]: newFinish
             }
         }
+        
         setDragState(newState)
         dispatch(storyDnD(draggableId, destination.index + 1, destination.droppableId, plusOne, minusOne))
         

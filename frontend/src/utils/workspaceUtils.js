@@ -11,8 +11,8 @@ export const dndDataObject = (names, stories, order) => {
         })
 
         Object.keys(stories).forEach(el => {
-            newState.stories[stories[el].id] = stories[el]
-            newState.columns[stories[el].workflowStatusId].storyIds.splice(stories[el].priority - 1, 0, [stories[el].id])
+            newState.stories[el.toString()] = stories[el]
+            newState.columns[stories[el].workflowStatusId].storyIds.splice(stories[el].priority - 1, 0, el)
         })
         Object.keys(order).forEach(el => {
             newState.columnOrder[el - 1] = order[el]

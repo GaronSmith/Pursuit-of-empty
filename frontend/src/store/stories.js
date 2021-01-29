@@ -23,7 +23,6 @@ export const getStories = (id) => async (dispatch) => {
     Object.keys(response.data.stories).forEach(el => {
         obj[response.data.stories[el].id] = response.data.stories[el]
     })
-    console.log(obj)
     dispatch(setStories(obj))
     return response
 }
