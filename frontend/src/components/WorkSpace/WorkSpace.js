@@ -38,12 +38,13 @@ const WorkSpace = () => {
     }, [dispatch, sessionUser,id])
 
     useEffect(() => {
-     
-        const newState = dndDataObject(preferences.names, stories, preferences.order)
-  
+        let newState
+        if(preferences && stories){
+             newState = dndDataObject(preferences.names, stories, preferences.order)
+        }
         setDragState(newState)
-
-    }, [preferences,stories])
+        
+    }, [preferences,stories, dispatch])
 
     const onDragEnd = (result) => {
         const {destination, source, draggableId} = result;
@@ -61,9 +62,9 @@ const WorkSpace = () => {
         if(start === finish){
             const newStoryIds = Array.from(start.storyIds)
             const plusOne = newStoryIds.slice(destination.index, source.index)
+            const minusOne = newStoryIds.slice(source.index+1, destination.index+1)
             newStoryIds.splice(source.index, 1)
             newStoryIds.splice(destination.index, 0, draggableId)
-
             const newColumn = {
                 ...start,
                 storyIds: newStoryIds
@@ -76,8 +77,8 @@ const WorkSpace = () => {
                     [newColumn.id]: newColumn
                 }
             }
-            setDragState(newState)
-            dispatch(storyDnD(draggableId, destination.index+1, destination.droppableId, plusOne, [] ))
+            setDragState(() =>newState)
+            dispatch(storyDnD(draggableId, destination.index, destination.droppableId, plusOne, minusOne ))
             
             return
         }
@@ -87,6 +88,7 @@ const WorkSpace = () => {
 
         const finishStoryIds = Array.from(finish.storyIds)
         const plusOne = finishStoryIds.slice(destination.index)
+
         finishStoryIds.splice(destination.index, 0, draggableId)
 
         const newStart = {
@@ -107,10 +109,9 @@ const WorkSpace = () => {
             }
         }
         setDragState(newState)
-        dispatch(storyDnD(draggableId, destination.index + 1, destination.droppableId, plusOne, minusOne))
+        dispatch(storyDnD(draggableId, destination.index, destination.droppableId, plusOne, minusOne))
         
     }
-
     return(
         <div className='workspace-container'>
             <div className='sidebar'>
