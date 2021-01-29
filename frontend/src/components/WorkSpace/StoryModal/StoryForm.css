@@ -14,9 +14,13 @@
 .form-label{
     color: rgba(155,172,192);
     margin-bottom: .3rem;
+    margin-top: .5rem;
 }
 .form__input-container--dropdown{
     background-color: rgba(32,40,51,.1);
     color:rgb(197,198,200);
     border:.15px solid rgb(11,12,15);
+}
+.task-container{
+    margin-top: .5rem;
 }

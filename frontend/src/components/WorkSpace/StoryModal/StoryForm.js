@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { updateProgress } from '../../../store/stories';
 import { getTasks } from '../../../store/tasks';
 import Task from '../Task';
 import TaskForm from '../TaskForm';
@@ -16,6 +17,20 @@ const StoryForm = ({story}) => {
     
     const dispatch = useDispatch();
 
+    const onSubmit = (e) =>{
+        e.preventDefault();
+
+        const newStory = {
+            ...story,
+            progress,
+            name,
+            description,
+            points,
+            code
+        }
+
+        dispatch(updateProgress(newStory))
+    }
     
     useEffect(() => {
         dispatch(getTasks(story.id))
@@ -42,12 +57,11 @@ const StoryForm = ({story}) => {
                     Progress
                 </label>
                 <select className='form__input-container--dropdown'
-                    value={points}
-                    onChange={(e) => setPoints(e.target.value)}>
-                    <option value={null}>Not Started</option>
+                    value={progress}
+                    onChange={(e) => setProgress(e.target.value)}>
+                    <option value='' >Not Started</option>
                     <option value='Start'>Started</option>
                     <option value='Complete'>Completed</option>
-                    <option value={4}>4 - extremely difficult</option>
                 </select>
             </div>
             <div className='form__input-container'>
@@ -87,9 +101,13 @@ const StoryForm = ({story}) => {
                     placeholder={code}
                 />
             </div>
+            <div className="form__button">
+                <button id='cancel' data-dismiss="modal"  className="form__button-button">Delete</button>
+                <button className="form__button-button" onClick={onSubmit} type="submit">Save Story Details</button>
+            </div>
             <div className='task-container'>
                 <div className='task-header'>
-                    <label className='form-label'>Tasks</label>
+                    <label className='form-label'>Story Tasks</label>
                 </div>
                 {Object.keys(tasks).map(key => {
                     return <Task key={key} task={tasks[key]} />

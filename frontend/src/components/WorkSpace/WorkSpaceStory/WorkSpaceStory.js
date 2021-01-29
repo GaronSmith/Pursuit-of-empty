@@ -13,7 +13,7 @@ const WorkSpaceStory = ({story,index}) => {
     // const [storyState, setStoryState] = useState(story)
 
     const buttonText = (text) => {
-        if(text === null) return 'Start'
+        if(text === '' || text === null) return 'Start'
         if(text === 'Start') return 'Complete'
         if(text === 'Complete') return 'Completed'
         if(text === 'Completed') return 'Completed'
@@ -26,7 +26,9 @@ const WorkSpaceStory = ({story,index}) => {
         switch(story.progress){
             case null:
                 newProgress = 'Start'
-                console.log('hit')
+                break
+            case '':
+                newProgress = 'Start'
                 break
             case 'Start':
                 newProgress = 'Complete'
