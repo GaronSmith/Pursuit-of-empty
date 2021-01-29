@@ -145,4 +145,13 @@ router.delete('/tasks/:id', asyncHandler(async (req,res) => {
     res.json('deleted')
 }))
 
+router.put('/tasks/:id', asyncHandler( async (req, res) => {
+    const {completed} = req.body
+    const task = await Task.findByPk(req.params.id)
+
+    await task.update({completed})
+
+    res.json(task)
+}))
+
 module.exports = router;
