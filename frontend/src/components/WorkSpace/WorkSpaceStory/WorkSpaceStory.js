@@ -40,6 +40,7 @@ const WorkSpaceStory = ({story,index}) => {
             ...story,
             progress: newProgress
         }
+
         dispatch(updateProgress(newState))
     }
 
@@ -48,9 +49,6 @@ const WorkSpaceStory = ({story,index}) => {
             {(provided) => (
                 <div className='story-container' ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
                     <div className='story-container__left'>
-                        {/* <button className='story-button__more'>
-                            <FontAwesomeIcon className='story-icon' icon={faBars} />
-                        </button> */}
                         <StoryModal story={story}/>
                         <h3 className='story-name'>{story.name}</h3>
                     </div>

@@ -10,9 +10,12 @@ const StoryForm = ({story}) => {
     return (
         <form className='form__story'>
             <div className='form__content-container'>
-                <h3 className='form__title'>{story.name}</h3>
+                <h3 className='form__title'>Story: {story.name}</h3>
             </div>
             <div className='form__input-container'>
+                <label className='form-label'>
+                   Name
+                </label>
                 <input
                     required
                     className="form__input-container--text"
@@ -22,6 +25,22 @@ const StoryForm = ({story}) => {
                 /> 
             </div>
             <div className='form__input-container'>
+                <label className='form-label'>
+                    Progress
+                </label>
+                <select className='form__input-container--dropdown'
+                    value={points}
+                    onChange={(e) => setPoints(e.target.value)}>
+                    <option value={null}>Not Started</option>
+                    <option selected='selected' value='Start'>Started</option>
+                    <option value='Complete'>Completed</option>
+                    <option value={4}>4 - extremely difficult</option>
+                </select>
+            </div>
+            <div className='form__input-container'>
+                <label className='form-label'>
+                    Description
+                </label>
                 <textarea
                     value={description}
                     className="form__input-container--textarea"
@@ -37,13 +56,16 @@ const StoryForm = ({story}) => {
                 <select className= 'form__input-container--dropdown' 
                         value={points}
                         onChange={(e) => setPoints(e.target.value)}>
-                    <option value={1}>1</option>
-                    <option value={2}>2</option>
-                    <option value={3}>3</option>
-                    <option value={4}>4</option>
+                    <option value={1}>1 - easy</option>
+                    <option value={2}>2 - medium</option>
+                    <option value={3}>3 - hard</option>
+                    <option value={4}>4 - extremely difficult</option>
                 </select>
             </div>
             <div className='form__input-container'>
+                <label className='form-label'>
+                    Link to your 
+                </label>
                 <input
                     required
                     className="form__input-container--text"

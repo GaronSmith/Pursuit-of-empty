@@ -5,3 +5,17 @@
     padding: 4rem;
     background-color:rgb(32,40,51) ;
 }
+.form__input-container{
+    margin: .2rem;
+    display: flex;
+    flex-direction: column;
+}
+.form-label{
+    color: rgba(155,172,192);
+    margin-bottom: .3rem;
+}
+.form__input-container--dropdown{
+    background-color: rgba(32,40,51,.1);
+    color:rgb(197,198,200);
+    border:.15px solid rgb(11,12,15);
+}
