@@ -76,7 +76,7 @@ const WorkSpace = () => {
                     [newColumn.id]: newColumn
                 }
             }
-            setDragState(newState)
+            // setDragState(newState)
             dispatch(storyDnD(draggableId, destination.index+1, destination.droppableId, plusOne, [] ))
             
             return
@@ -107,7 +107,7 @@ const WorkSpace = () => {
             }
         }
         
-        setDragState(newState)
+        // setDragState(newState)
         dispatch(storyDnD(draggableId, destination.index + 1, destination.droppableId, plusOne, minusOne))
         
     }
