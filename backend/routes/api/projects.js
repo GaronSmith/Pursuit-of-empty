@@ -136,4 +136,13 @@ router.post('/tasks', asyncHandler( async (req,res) => {
     res.json({task})
 }))
 
+router.delete('/tasks/:id', asyncHandler(async (req,res) => {
+    const task = await Task.destroy({
+        where:{
+            id:req.params.id
+        }
+    })
+    res.json('deleted')
+}))
+
 module.exports = router;

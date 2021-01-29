@@ -1,7 +1,7 @@
 .task-container{
     display: flex;
     flex-direction: column;
-    margin-bottom: .1rem;
+    margin-bottom: 4px;
     overflow: auto;
 }
 

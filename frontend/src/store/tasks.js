@@ -3,24 +3,32 @@ import { fetch } from './csrf';
 const SET_TASKS = 'tasks/getTasks'
 const REMOVE_TASKS = 'tasks/emptyTasks'
 const CREATE_TASK = 'tasks/createTask'
+const DELETE_TASK = 'tasks/delTask'
 
 const setTasks = (tasks) => {
     return {
-        type:SET_TASKS,
+        type: SET_TASKS,
         tasks
     }
 }
 
 const emptyTasks = () => {
     return {
-        type:REMOVE_TASKS
+        type: REMOVE_TASKS
     }
 }
 
 const addTask = (task) => {
     return {
-        type:CREATE_TASK,
+        type: CREATE_TASK,
         task
+    }
+}
+
+const delTask = (id) => {
+    return {
+        type: DELETE_TASK,
+        id
     }
 }
 
@@ -49,6 +57,13 @@ export const removeTasks = () => async (dispatch) => {
     dispatch(emptyTasks())
 }
 
+export const deleteTask = (id) => async(dispatch) => {
+    const response = await fetch(`/api/projects/tasks/${id}`,{
+        method:'DELETE'
+    })
+    dispatch(delTask(id))
+}
+
 const initialState = {};
 
 const tasksReducer = (state = initialState, action) => {
@@ -63,6 +78,10 @@ const tasksReducer = (state = initialState, action) => {
         case CREATE_TASK:
             newState = {...state}
             newState[action.task.id] = action.task
+            return newState
+        case DELETE_TASK:
+            newState = {...state}
+            delete newState[action.id]
             return newState
         default:
             return state
