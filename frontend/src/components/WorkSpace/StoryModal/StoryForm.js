@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getTasks } from '../../../store/tasks';
 import Task from '../Task';
+import TaskForm from '../TaskForm';
 import './StoryForm.css'
 
 const StoryForm = ({story}) => {
@@ -90,6 +91,7 @@ const StoryForm = ({story}) => {
                 {Object.keys(tasks).map(key => {
                     return <Task key={key} task={tasks[key]} />
                 })}
+                <TaskForm />
             </div>
         </form>
     )
