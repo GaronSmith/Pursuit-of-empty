@@ -64,7 +64,7 @@ const StoryForm = ({story}) => {
             </div>
             <div className='form__input-container'>
                 <label className='form-label'>
-                    Link to your 
+                    Link to your pull request
                 </label>
                 <input
                     required
@@ -73,6 +73,9 @@ const StoryForm = ({story}) => {
                     onChange={e => setCode(e.target.value)}
                     placeholder={code}
                 />
+            </div>
+            <div className='task-container'>
+                
             </div>
         </form>
     )
