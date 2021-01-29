@@ -91,7 +91,7 @@ const StoryForm = ({story}) => {
                 {Object.keys(tasks).map(key => {
                     return <Task key={key} task={tasks[key]} />
                 })}
-                <TaskForm />
+                <TaskForm storyId={story.id}/>
             </div>
         </form>
     )

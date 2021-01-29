@@ -1,11 +1,17 @@
+import { useDispatch } from 'react-redux'
 import './TaskForm.css'
-const TaskForm = () => {
+const TaskForm = ({storyId}) => {
+    const dispatch = useDispatch();
+
+    const onSubmit = (e) => {
+        e.preventDefault()
+    }
+
     return (
-        <div className='taskform-container'>
+        <form onSubmit={onSubmit} className='taskform-container'>
             <input className='taskform-input' type='text' placeholder='Add a task'></input>
             <button className='taskform-add' type='submit'>Add</button>
-
-        </div>
+        </form>
     )
 }
 export default TaskForm
