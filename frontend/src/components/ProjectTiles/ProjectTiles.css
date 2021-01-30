@@ -35,6 +35,18 @@
     color:rgb(197,198,200)
 }
 
+.project-tile__buttons{
+    display: flex;
+    flex-direction: row;
+}
+
+.project-tile__add-users{
+     border: none;
+    background: none;
+    font-size: 1.3rem;
+    color:rgb(197,198,200);
+}
+
 button.project-tile__delete{
     border: none;
     background: none;
