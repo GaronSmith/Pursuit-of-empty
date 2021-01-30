@@ -2,6 +2,7 @@ import { fetch } from './csrf'
 
 const CREATE_PROJECT = 'project/createProject';
 const SET_PROJECTS = 'project/setProjects'
+const DELETE_PROJECT = 'project/deleteProject'
 
 const createProject = (project) => {
     return {
@@ -14,6 +15,12 @@ const setProjects = (projects) => {
     return {
         type: SET_PROJECTS,
         projects,
+    }
+}
+const delProject = (id) => {
+    return {
+        type: DELETE_PROJECT,
+        id
     }
 }
 
@@ -37,9 +44,21 @@ export const projectCreate = (project) => async (dispatch) => {
 }
 
 export const getProjects = (id) => async (dispatch) => {
-    const response = await fetch(`/api/projects/${id}`) // remember to not hardcode
-    dispatch(setProjects(response.data.projects))
+    const response = await fetch(`/api/projects/${id}`) 
+    const obj = {}
+    Object.keys(response.data.projects).forEach(el => {
+        obj[response.data.projects[el].id] = response.data.projects[el]
+    })
+    dispatch(setProjects(obj))
     return response
+}
+
+export const removeProject = (id) => async (dispatch) => {
+    await fetch(`/api/projects/${id}`, {
+        method:'DELETE'
+    })
+    dispatch(delProject(id))
+    return
 }
 
 const initialState = {};
@@ -54,6 +73,10 @@ const projectReducer = (state = initialState, action) =>{
             return newState;
         case SET_PROJECTS:
             newState = { ...state, ...action.projects };
+            return newState
+        case DELETE_PROJECT:
+            newState = {...state}
+            delete newState[action.id]
             return newState
         default:
             return state

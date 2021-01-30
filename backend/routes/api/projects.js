@@ -29,6 +29,15 @@ router.post('/', validateProject, asyncHandler(async (req,res) => {
     });
 }))
 
+router.delete('/:id', asyncHandler( async (req, res) => {
+    await Project.destroy({
+        where:{
+            id: req.params.id
+        }
+    })
+    res.json('deleted')
+}))
+
 router.get('/:id', asyncHandler(async(req,res) =>{
     const projects = await Project.findAll({
         where:{
