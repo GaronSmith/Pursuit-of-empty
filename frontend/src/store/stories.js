@@ -75,7 +75,7 @@ export const updateProgress = (story) => async (dispatch) => {
 }
 
 export const deleteStory = (id) => async (dispatch) => {
-    const story = await fetch(`/api/projects/stories/${id}`,{
+    await fetch(`/api/projects/stories/${id}`,{
         method:'DELETE',
     })
     dispatch(delStory(id))

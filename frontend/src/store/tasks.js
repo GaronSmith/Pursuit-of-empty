@@ -65,7 +65,7 @@ export const removeTasks = () => async (dispatch) => {
 }
 
 export const deleteTask = (id) => async(dispatch) => {
-    const response = await fetch(`/api/projects/tasks/${id}`,{
+     await fetch(`/api/projects/tasks/${id}`,{
         method:'DELETE'
     })
     dispatch(delTask(id))
@@ -103,6 +103,7 @@ const tasksReducer = (state = initialState, action) => {
         case UPDATED_TASK:
             newState = {...state}
             newState[action.task.id] = action.task
+            return newState
         default:
             return state
     }

@@ -6,7 +6,7 @@ import Task from '../Task';
 import TaskForm from '../TaskForm';
 import './StoryForm.css'
 
-const StoryForm = ({story, workflowStatusId, project, priority}) => {
+const StoryForm = ({handleClose, story, workflowStatusId, project, priority}) => {
     console.log(story, workflowStatusId, project, priority)
     const [progress, setProgress] = useState(story.progress)
     const [name, setName] = useState(story.name)
@@ -20,8 +20,8 @@ const StoryForm = ({story, workflowStatusId, project, priority}) => {
 
     const onDelete = (e) => {
         e.preventDefault()
-
         if(story.id !== 'new') dispatch(deleteStory(story.id))
+        handleClose()
     }
 
     const onSubmit = (e) =>{
@@ -37,6 +37,7 @@ const StoryForm = ({story, workflowStatusId, project, priority}) => {
         }
         if (story.id !== 'new'){
             dispatch(updateProgress(newStory))
+            handleClose()
         } else if (story.id === 'new'){
             const newStory = {
                 progress,
@@ -49,15 +50,14 @@ const StoryForm = ({story, workflowStatusId, project, priority}) => {
                 priority,
                 assignedId:sessionUser.id
             }
-            console.log(newStory)
             dispatch(createStory(newStory))
+            handleClose()
         }
-
     }
     
     useEffect(() => {
         if(story.id !== 'new') dispatch(getTasks(story.id))
-    }, [dispatch])
+    }, [dispatch, story.id])
     return (
         <form className='form__story'>
             <div className='form__content-container'>
@@ -104,7 +104,7 @@ const StoryForm = ({story, workflowStatusId, project, priority}) => {
                     Please estimate points
                 </label>
                 <select className= 'form__input-container--dropdown' 
-                        value={points}
+                        value={points? points :''}
                         onChange={(e) => setPoints(e.target.value)}>
                     <option value={1}>1 - easy</option>
                     <option value={2}>2 - medium</option>

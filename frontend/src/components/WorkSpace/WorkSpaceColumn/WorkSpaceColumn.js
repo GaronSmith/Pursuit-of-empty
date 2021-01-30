@@ -11,7 +11,6 @@ const WorkSpaceColumn = ({column, stories}) => {
     const empytyStory = {id:'new', name:'new'}
     const {id} = useParams();
     const newIndex = stories.length
-    console.log('Priority', newIndex)
     return (
         <div className='column-container'>
             <div className='column-header'>

@@ -4,7 +4,6 @@ import {Draggable} from 'react-beautiful-dnd'
 import './WorkSpaceStory.css'
 import { useDispatch } from 'react-redux'
 import { updateProgress } from '../../../store/stories'
-import { useEffect, useState } from 'react'
 import StoryModal from '../StoryModal/StoryModal'
 const WorkSpaceStory = ({story,index}) => {
     const dispatch = useDispatch();
@@ -32,6 +31,8 @@ const WorkSpaceStory = ({story,index}) => {
                 break
             case 'Complete':
                 newProgress = 'Completed'
+                break
+            default:
                 break
             }
 
