@@ -2,18 +2,28 @@ import { Link } from "react-router-dom"
 import moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBan, faProjectDiagram } from '@fortawesome/free-solid-svg-icons'
+import { useDispatch, useSelector } from "react-redux"
+import { removeProject } from "../../store/project"
 
 const ProjectDetails = ({project}) =>{
-
+    const dispatch = useDispatch()
+    const sessionUser = useSelector(state => state.session.user)
+    
+    const onClick = (e) => {
+        e.preventDefault()
+        dispatch(removeProject(project.id))
+    }
     return (
         <div className='project-tile__container'>
             <div className='project-tile__header'>
                 
                 <Link className='project-tile__title' to={`/workspace/${project.id}`} >
-                    <FontAwesomeIcon className='project-icon' icon={faProjectDiagram} /> {project.name}</Link>  
-                <button className='project-tile__delete'>
-                    <FontAwesomeIcon icon={faBan}/>
-                </button>
+                    <FontAwesomeIcon className='project-icon' icon={faProjectDiagram} /> {project.name}</Link> 
+                {sessionUser.id === project.ownerId && 
+                <button onClick={onClick} className='project-tile__delete'>
+                    <FontAwesomeIcon icon={faBan} />
+                </button>} 
+                
             </div>
             <div className='project-tile__container-details'>
                 <div className='project-tile__container-info'>
