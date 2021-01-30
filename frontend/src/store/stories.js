@@ -4,6 +4,7 @@ const SET_STORIES = 'stories/setStories'
 const UPDATE_STORIES ='stories/updateStories'
 const DELETE_STORY = 'stories/delStory'
 const NEW_STORY = 'stories/createStory'
+const REMOVE_STORIES = 'stories/removeStories'
 
 const setStories = (stories) => {
     return {
@@ -30,6 +31,12 @@ const newStory = (story) => {
     return {
         type: NEW_STORY,
         story
+    }
+}
+
+const remStories = () => {
+    return {
+        type: REMOVE_STORIES
     }
 }
 
@@ -89,6 +96,11 @@ export const createStory = (story) => async (dispatch) => {
     dispatch(newStory(response.data.story))
     return story
 }
+
+export const removeStories = () => async (dispatch) => {
+    dispatch(remStories())
+    return
+}
 const initialState = {};
 
 const storiesReducer = (state = initialState, action) => {
@@ -110,6 +122,9 @@ const storiesReducer = (state = initialState, action) => {
         case NEW_STORY:
             newState = {...state}
             newState[action.story.id] = action.story
+            return newState
+        case REMOVE_STORIES:
+            newState = {}
             return newState
         default:
             return state
