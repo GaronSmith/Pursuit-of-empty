@@ -3,6 +3,7 @@ import { fetch } from './csrf'
 const CREATE_PROJECT = 'project/createProject';
 const SET_PROJECTS = 'project/setProjects'
 const DELETE_PROJECT = 'project/deleteProject'
+const SET_TEAM_MEMBERS = 'project/setTeamMembers'
 
 const createProject = (project) => {
     return {
@@ -21,6 +22,13 @@ const delProject = (id) => {
     return {
         type: DELETE_PROJECT,
         id
+    }
+}
+
+const setTeamMembers= (teamMembers) => {
+    return {
+        type: SET_TEAM_MEMBERS,
+        teamMembers
     }
 }
 
@@ -53,6 +61,16 @@ export const getProjects = (id) => async (dispatch) => {
     return response
 }
 
+export const getTeamMembers = (id) => async (dispatch) => {
+    const response = await fetch(`/api/projects/teammembers/${id}`)
+    const obj = {}
+    Object.keys(response.data.teamMembers).forEach(el => {
+        obj[response.data.teamMembers[el].id] = response.data.teamMembers[el]
+    })
+    dispatch(setTeamMembers(obj))
+    return obj
+}
+
 export const removeProject = (id) => async (dispatch) => {
     await fetch(`/api/projects/${id}`, {
         method:'DELETE'
@@ -77,6 +95,10 @@ const projectReducer = (state = initialState, action) =>{
         case DELETE_PROJECT:
             newState = {...state}
             delete newState[action.id]
+            return newState
+        case SET_TEAM_MEMBERS:
+            newState = {...state}
+            newState.members = action.teamMembers
             return newState
         default:
             return state

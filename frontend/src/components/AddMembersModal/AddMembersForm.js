@@ -1,10 +1,20 @@
 import { Multiselect } from 'multiselect-react-dropdown'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { fetch } from '../../store/csrf'
+import { getTeamMembers } from '../../store/project'
 import './AddMembersForm.css'
 
 const AddMembersForm = ({project}) => {
+    const teamMembers = useSelector(state => state.projects.members)
     const[options, setOptions] = useState([])
+    const[members, setMembers] = useState(teamMembers)
+    const dispatch = useDispatch();
+    
+
+    useEffect(() => {
+        dispatch(getTeamMembers(project.id))
+    },[dispatch])
 
     const searchInput = async (value) => {
         if(value.length){
@@ -15,19 +25,19 @@ const AddMembersForm = ({project}) => {
                     body: JSON.stringify(body)
                 })
 
-                console.log(res.data.searchResults)
+                setOptions(res.data.searchResults)
             } catch (err){
 
             }
         }
     }
 
-    const onSelect = () => {
-
+    const onSelect = async (selectedList, selectedItem) => {
+        dispatch(selectedItem.id, project.id)
     }
 
-    const onRemove = () => {
-
+    const onRemove = async (selectedList, selectedItem) => {
+        dispatch()
     }
     return (
         <div className='form__content-container'>
@@ -38,7 +48,8 @@ const AddMembersForm = ({project}) => {
                 onSelect={onSelect}
                 onRemove={onRemove}
                 onSearch={searchInput}
-                displayValue='name'
+                selectedValues={members}
+                displayValue='username'
                 />
             </div>
         </div>

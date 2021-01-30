@@ -29,6 +29,15 @@ router.post('/', validateProject, asyncHandler(async (req,res) => {
     });
 }))
 
+router.get('/teammembers/:id', asyncHandler(async (req,res) => {
+    const teamMembers = TeamMember.findAll({
+        where:{
+            projectId: req.params.id
+        }
+    })
+    res.json({teamMembers})
+}))
+
 router.delete('/:id', asyncHandler( async (req, res) => {
     await Project.destroy({
         where:{

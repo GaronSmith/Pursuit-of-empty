@@ -33,12 +33,14 @@ const ProjectsTiles = () => {
             <div className='tiles-container__my-projects'>
                 <h3 className='tiles-container__title'>My Projects</h3>
                 {Object.values(projects).map(proj => {
-                    return (
-                        <div key={i--} className='tiles-container__tile'>
-                            <ProjectDetails key={proj.id} project={proj} />
-                        </div>
-                    )
-
+                    console.log(proj)
+                    if (proj.id !== undefined){
+                        return (
+                            <div key={i--} className='tiles-container__tile'>
+                                <ProjectDetails key={proj.id} project={proj} />
+                            </div>
+                        )
+                    }
                 })}
             </div>
             <div className='tiles-container__assigned-projects'>
