@@ -22,7 +22,10 @@ const ProjectsTiles = () => {
             await dispatch(removeStories())
        } 
        getProj()
-    }, [sessionUser,dispatch])
+    }, [sessionUser, dispatch])
+
+    
+
     let i = 0
     
     return (

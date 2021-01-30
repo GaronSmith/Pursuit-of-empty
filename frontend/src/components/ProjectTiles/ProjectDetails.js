@@ -3,7 +3,7 @@ import moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBan, faProjectDiagram } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch, useSelector } from "react-redux"
-import { removeProject } from "../../store/project"
+import { getProjects, removeProject } from "../../store/project"
 
 const ProjectDetails = ({project}) =>{
     const dispatch = useDispatch()
@@ -12,6 +12,7 @@ const ProjectDetails = ({project}) =>{
     const onClick = (e) => {
         e.preventDefault()
         dispatch(removeProject(project.id))
+        dispatch(getProjects(sessionUser.id))
     }
     return (
         <div className='project-tile__container'>

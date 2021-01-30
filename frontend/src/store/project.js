@@ -44,8 +44,12 @@ export const projectCreate = (project) => async (dispatch) => {
 }
 
 export const getProjects = (id) => async (dispatch) => {
-    const response = await fetch(`/api/projects/${id}`) // remember to not hardcode
-    dispatch(setProjects(response.data.projects))
+    const response = await fetch(`/api/projects/${id}`) 
+    const obj = {}
+    Object.keys(response.data.projects).forEach(el => {
+        obj[response.data.projects[el].id] = response.data.projects[el]
+    })
+    dispatch(setProjects(obj))
     return response
 }
 
