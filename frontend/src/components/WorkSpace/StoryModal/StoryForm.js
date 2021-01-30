@@ -1,26 +1,27 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteStory, updateProgress } from '../../../store/stories';
+import { createStory, deleteStory, updateProgress } from '../../../store/stories';
 import { getTasks } from '../../../store/tasks';
 import Task from '../Task';
 import TaskForm from '../TaskForm';
 import './StoryForm.css'
 
-const StoryForm = ({story}) => {
+const StoryForm = ({story, workflowStatusId, project, priority}) => {
+    console.log(story, workflowStatusId, project, priority)
     const [progress, setProgress] = useState(story.progress)
     const [name, setName] = useState(story.name)
     const [description, setDescription] = useState(story.description)
     const [points, setPoints] = useState(story.points)
-    const [code, setCode] = useState(story.code)
+    const [code, setCode] = useState(story.code? story.code : '')
     
     const tasks = useSelector(state => state.tasks)
-    
+    const sessionUser = useSelector(state => state.session.user)
     const dispatch = useDispatch();
 
     const onDelete = (e) => {
         e.preventDefault()
 
-        dispatch(deleteStory(story.id))
+        if(story.id !== 'new') dispatch(deleteStory(story.id))
     }
 
     const onSubmit = (e) =>{
@@ -34,12 +35,28 @@ const StoryForm = ({story}) => {
             points,
             code
         }
+        if (story.id !== 'new'){
+            dispatch(updateProgress(newStory))
+        } else if (story.id === 'new'){
+            const newStory = {
+                progress,
+                name,
+                description,
+                points,
+                code,
+                workflowStatusId,
+                projectId:parseInt(project),
+                priority,
+                assignedId:sessionUser.id
+            }
+            console.log(newStory)
+            dispatch(createStory(newStory))
+        }
 
-        dispatch(updateProgress(newStory))
     }
     
     useEffect(() => {
-        dispatch(getTasks(story.id))
+        if(story.id !== 'new') dispatch(getTasks(story.id))
     }, [dispatch])
     return (
         <form className='form__story'>
@@ -111,15 +128,16 @@ const StoryForm = ({story}) => {
                 <button id='cancel' data-dismiss="modal"  onClick={onDelete} className="form__button-button">Delete</button>
                 <button className="form__button-button" onClick={onSubmit} type="submit">Save Story Details</button>
             </div>
-            <div className='task-container'>
+            {story.id !== 'new' && <div className='task-container'>
                 <div className='task-header'>
                     <label className='form-label'>Story Tasks</label>
                 </div>
                 {Object.keys(tasks).map(key => {
                     return <Task key={key} task={tasks[key]} />
                 })}
-                <TaskForm storyId={story.id}/>
-            </div>
+                <TaskForm storyId={story.id} />
+            </div>}
+            
         </form>
     )
 }

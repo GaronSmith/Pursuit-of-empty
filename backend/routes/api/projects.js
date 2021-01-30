@@ -119,6 +119,14 @@ router.put('/stories/:id', asyncHandler( async (req,res) => {
 
 }))
 
+router.post('/stories', asyncHandler( async (req,res) => {
+    const body = req.body 
+    const story = await Story.create(body)
+    if (story){
+        res.json({story})
+    }
+}))
+
 router.delete('/stories/:id', asyncHandler( async (req,res) => {
     const story = await Story.destroy({
         where:{
