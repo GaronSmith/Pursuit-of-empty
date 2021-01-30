@@ -119,6 +119,14 @@ router.put('/stories/:id', asyncHandler( async (req,res) => {
 
 }))
 
+router.post('/stories', asyncHandler( async (req,res) => {
+    const body = req.body 
+    const story = await Story.create(body)
+    if (story){
+        res.json({story})
+    }
+}))
+
 router.delete('/stories/:id', asyncHandler( async (req,res) => {
     const story = await Story.destroy({
         where:{
@@ -152,6 +160,15 @@ router.delete('/tasks/:id', asyncHandler(async (req,res) => {
         }
     })
     res.json('deleted')
+}))
+
+router.put('/tasks/:id', asyncHandler( async (req, res) => {
+    const {completed} = req.body
+    const task = await Task.findByPk(req.params.id)
+
+    await task.update({completed})
+    console.log(task)
+    res.json(task)
 }))
 
 module.exports = router;

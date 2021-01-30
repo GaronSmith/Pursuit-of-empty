@@ -4,6 +4,7 @@ const SET_TASKS = 'tasks/getTasks'
 const REMOVE_TASKS = 'tasks/emptyTasks'
 const CREATE_TASK = 'tasks/createTask'
 const DELETE_TASK = 'tasks/delTask'
+const UPDATED_TASK = 'tasks/updatedTask'
 
 const setTasks = (tasks) => {
     return {
@@ -29,6 +30,12 @@ const delTask = (id) => {
     return {
         type: DELETE_TASK,
         id
+    }
+}
+const updatedTask = (task) => {
+    return {
+        type: UPDATED_TASK,
+        task
     }
 }
 
@@ -58,10 +65,21 @@ export const removeTasks = () => async (dispatch) => {
 }
 
 export const deleteTask = (id) => async(dispatch) => {
-    const response = await fetch(`/api/projects/tasks/${id}`,{
+     await fetch(`/api/projects/tasks/${id}`,{
         method:'DELETE'
     })
     dispatch(delTask(id))
+}
+
+export const updateTask = (task) => async(dispatch) => {
+    const body = task;
+    const response = await fetch(`/api/projects/tasks/${task.id}`, {
+        method:'PUT',
+        body:JSON.stringify(body)
+    })
+    console.log('****',response.data)
+    dispatch(updatedTask(response.data))
+    return response
 }
 
 const initialState = {};
@@ -82,6 +100,10 @@ const tasksReducer = (state = initialState, action) => {
         case DELETE_TASK:
             newState = {...state}
             delete newState[action.id]
+            return newState
+        case UPDATED_TASK:
+            newState = {...state}
+            newState[action.task.id] = action.task
             return newState
         default:
             return state

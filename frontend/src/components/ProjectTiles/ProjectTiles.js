@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from "react-redux"
 import ProjectDetails from './ProjectDetails'
 import {getProjects} from '../../store/project'
 import {getAssignedProjects} from '../../store/assignedProjects'
+import {removeStories} from '../../store/stories'
 import './ProjectTiles.css'
 
 
-const ProjectsTiles = ({isLoaded}) => {
+const ProjectsTiles = () => {
 
     
     const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const ProjectsTiles = ({isLoaded}) => {
         const getProj = async () =>{
             await dispatch(getProjects(sessionUser.id))
             await dispatch(getAssignedProjects(sessionUser.id))
+            await dispatch(removeStories())
        } 
        getProj()
     }, [sessionUser,dispatch])

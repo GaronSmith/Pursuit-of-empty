@@ -1,16 +1,12 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import {Draggable} from 'react-beautiful-dnd'
 
 import './WorkSpaceStory.css'
 import { useDispatch } from 'react-redux'
 import { updateProgress } from '../../../store/stories'
-import { useEffect, useState } from 'react'
 import StoryModal from '../StoryModal/StoryModal'
 const WorkSpaceStory = ({story,index}) => {
     const dispatch = useDispatch();
-
-    // const [storyState, setStoryState] = useState(story)
 
     const buttonText = (text) => {
         if(text === '' || text === null) return 'Start'
@@ -36,6 +32,8 @@ const WorkSpaceStory = ({story,index}) => {
             case 'Complete':
                 newProgress = 'Completed'
                 break
+            default:
+                break
             }
 
         const newState = {
@@ -51,7 +49,7 @@ const WorkSpaceStory = ({story,index}) => {
             {(provided) => (
                 <div className='story-container' ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
                     <div className='story-container__left'>
-                        <StoryModal story={story}/>
+                        <StoryModal story={story} icon={faBars}/>
                         <h3 className='story-name'>{story.name}</h3>
                     </div>
                     <div className='story-container__right'>

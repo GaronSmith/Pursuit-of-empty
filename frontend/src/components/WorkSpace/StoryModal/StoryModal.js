@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+
 
 import { Modal } from '../../../context/Modal';
 import StoryForm from './StoryForm'
@@ -9,7 +9,7 @@ import { removeTasks } from '../../../store/tasks';
 
 
 
-const StoryModal = ({story}) => {
+const StoryModal = ({ story, icon, workflowStatusId, project, priority}) => {
     const [showModal, setShowModal] = useState(false);
     const dispatch = useDispatch();
 
@@ -28,11 +28,18 @@ const StoryModal = ({story}) => {
             <button
                 className='story-button__more'
                 onClick={() => { setShowModal(true) }}>
-                <FontAwesomeIcon className='story-icon' icon={faBars} />
+                <FontAwesomeIcon className='story-icon' icon={icon} />
             </button>
             {showModal && (
                 <Modal onClose={onClose}>
-                    <StoryForm className= 'modal' story={story} handleClose={handleClose} />
+                    <StoryForm 
+                    className= 'modal' 
+                    story={story} 
+                    handleClose={handleClose} 
+                    story={story}
+                    workflowStatusId={workflowStatusId}
+                    project={project}
+                    priority={priority}/>
                 </Modal>
             )}
         </>
