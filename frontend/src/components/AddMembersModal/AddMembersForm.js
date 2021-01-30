@@ -1,8 +1,26 @@
 import { Multiselect } from 'multiselect-react-dropdown'
-import './AddMembers.css'
+import { useState } from 'react'
+import { fetch } from '../../store/csrf'
+import './AddMembersForm.css'
 
 const AddMembersForm = ({project}) => {
     const[options, setOptions] = useState([])
+
+    const searchInput = async (value) => {
+        if(value.length){
+            const body = {value};
+            try {
+                const res = await fetch('/api/users/search', {
+                    method:'POST',
+                    body: JSON.stringify(body)
+                })
+
+                console.log(res.data.searchResults)
+            } catch (err){
+
+            }
+        }
+    }
 
     const onSelect = () => {
 
@@ -19,6 +37,7 @@ const AddMembersForm = ({project}) => {
                 options={options}
                 onSelect={onSelect}
                 onRemove={onRemove}
+                onSearch={searchInput}
                 displayValue='name'
                 />
             </div>

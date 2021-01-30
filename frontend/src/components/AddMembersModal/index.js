@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUsers } from '@fortawesome/free-solid-svg-icons'
 
 import AddMembersForm from './AddMembersForm';
 
-const AddMembersModal = () => {
+const AddMembersModal = ({project}) => {
     const [showModal, setShowModal] = useState(false);
 
     const handleClose = () => setShowModal(false);
@@ -17,7 +19,7 @@ const AddMembersModal = () => {
             </button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <AddMembersForm handleClose={handleClose} />
+                    <AddMembersForm project={project} handleClose={handleClose} />
                 </Modal>
             )}
         </>
