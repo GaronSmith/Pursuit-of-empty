@@ -77,7 +77,8 @@ export const updateTask = (task) => async(dispatch) => {
         method:'PUT',
         body:JSON.stringify(body)
     })
-    dispatch(updatedTask(response.data.task))
+    console.log('****',response.data)
+    dispatch(updatedTask(response.data))
     return response
 }
 

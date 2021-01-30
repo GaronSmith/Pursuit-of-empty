@@ -8,21 +8,22 @@ import { useState } from 'react'
 
 const Task = ({task}) => {
     const dispatch = useDispatch();
-    const [checked, setChecked] = useState(false);
+    const [checked, setChecked] = useState(task.completed);
+    (console.log(task.completed, 'completed'))
+    console.log(checked, 'checked')
 
     const onClick = (e) => {
         e.preventDefault()
         dispatch(deleteTask(task.id))
     }
     const handleCheck =(e) => {
-        e.preventDefault()
-        setChecked(!e.target.value)
-        const newTask = {
+       let newTask
+        setChecked(!checked)
+        newTask = {
             ...task,
-            completed:checked
+            completed: !checked
         }
-        console.log(newTask)
-        // dispatch(updateTask(newTask))
+        dispatch(updateTask(newTask))
     }
     return (
         <div className='task-container' >
@@ -31,9 +32,8 @@ const Task = ({task}) => {
                     <input 
                     type='checkbox' 
                     className='task-checkbox'
-                    value={checked}
                     onChange={handleCheck}
-                    checked={checked === true}
+                    checked={Boolean (checked)}
                     ></input>
                     <p className='task-name'>{task.name}</p>
                 </div>

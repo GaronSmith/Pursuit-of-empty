@@ -7,7 +7,6 @@ import TaskForm from '../TaskForm';
 import './StoryForm.css'
 
 const StoryForm = ({handleClose, story, workflowStatusId, project, priority}) => {
-    console.log(story, workflowStatusId, project, priority)
     const [progress, setProgress] = useState(story.progress)
     const [name, setName] = useState(story.name)
     const [description, setDescription] = useState(story.description)
@@ -82,6 +81,7 @@ const StoryForm = ({handleClose, story, workflowStatusId, project, priority}) =>
                 <select className='form__input-container--dropdown'
                     value={progress}
                     onChange={(e) => setProgress(e.target.value)}>
+                    <option value=''>Select a progress</option>
                     <option value='' >Not Started</option>
                     <option value='Start'>Started</option>
                     <option value='Complete'>Completed</option>
@@ -106,6 +106,7 @@ const StoryForm = ({handleClose, story, workflowStatusId, project, priority}) =>
                 <select className= 'form__input-container--dropdown' 
                         value={points? points :''}
                         onChange={(e) => setPoints(e.target.value)}>
+                    <option value='' >select a difficultly</option> 
                     <option value={1}>1 - easy</option>
                     <option value={2}>2 - medium</option>
                     <option value={3}>3 - hard</option>
