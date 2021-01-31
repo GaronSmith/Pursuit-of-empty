@@ -16,4 +16,10 @@ router.get('/:id', asyncHandler(async (req,res) => {
     return res.json({preferences})
 }));
 
+router.post('/', asyncHandler(async (req,res) =>{
+    await Preference.create(req.body)
+
+    return res.json('created')
+}))
+
 module.exports = router;
