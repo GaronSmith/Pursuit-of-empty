@@ -5,7 +5,7 @@ import Navigation from "./components/Navigation";
 import ProjectsTiles from "./components/ProjectTiles"
 import { Switch, Route } from "react-router-dom";
 import WorkSpace from "./components/WorkSpace";
-import HomePage from "./components/HomePage";
+import HomePage from "./components/Index";
 
 function App() {
   const dispatch = useDispatch();
