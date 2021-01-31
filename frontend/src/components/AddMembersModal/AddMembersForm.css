@@ -3,7 +3,7 @@
     padding: 4rem;
 }
 
-div.search-wrapper{
+div.search-wrapper, .searchBox{
     color:rgb(197,198,200);
 }
 .chip{
