@@ -24,7 +24,7 @@ const SignupForm = () => {
         e.preventDefault()
         setErrors([])
         if (password === confirmPassword) {
-            return dispatch(signup({ username,firstName, lastName, email, password }))
+            return dispatch(signup({ username, firstName, lastName, email, password }))
                 .then((res) => dispatch(addUser(res.data.user.id)))
                 .catch((res) => {
                     if (res.data && res.data.errors) setErrors(res.data.errors)
@@ -48,27 +48,27 @@ const SignupForm = () => {
                             required
                             className="form__input-container--text"
                             type="text" value={username}
-                            onChange={e => setUsername(e.target.value)} 
+                            onChange={e => setUsername(e.target.value)}
                             placeholder='username'
-                            />
+                        />
                     </div>
                     <div className="form__input-container">
                         <input
                             required
                             className="form__input-container--text"
                             type="text" value={firstName}
-                            onChange={e => setFirstName(e.target.value)} 
+                            onChange={e => setFirstName(e.target.value)}
                             placeholder='First Name'
-                            />
+                        />
                     </div>
                     <div className="form__input-container">
                         <input
                             required
                             className="form__input-container--text"
                             type="text" value={lastName}
-                            onChange={e => setLastName(e.target.value)} 
+                            onChange={e => setLastName(e.target.value)}
                             placeholder='Last Name'
-                            />
+                        />
                     </div>
                     <div className="form__input-container">
                         <input
@@ -77,8 +77,8 @@ const SignupForm = () => {
                             type="email"
                             value={email}
                             onChange={e => setEmail(e.target.value)}
-                            placeholder= 'email'
-                            />
+                            placeholder='email'
+                        />
                     </div>
                     <div className="form__input-container">
                         <input
@@ -88,7 +88,7 @@ const SignupForm = () => {
                             value={password}
                             onChange={e => setPassword(e.target.value)}
                             placeholder='password'
-                            />
+                        />
                     </div>
                     <div className="form__input-container">
                         <input
@@ -98,13 +98,13 @@ const SignupForm = () => {
                             value={confirmPassword}
                             onChange={e => setConfirmPassword(e.target.value)}
                             placeholder='confirm password'
-                            />
+                        />
                     </div>
                     <div className="form__button">
                         <button className="form__button-button" type="submit">Sign Up</button>
                     </div>
                 </div>
-                
+
             </form>
         </>
     );
