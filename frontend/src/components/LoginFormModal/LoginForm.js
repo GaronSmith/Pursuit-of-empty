@@ -25,6 +25,11 @@ function LoginForm() {
         );
     };
 
+    const onClick = (e) => {
+        e.preventDefault()
+        dispatch(sessionActions.demoLogin())
+    }
+
     return (
       
         <form className='form__login' onSubmit={onSubmit}>
@@ -59,8 +64,12 @@ function LoginForm() {
                     />
 
                 </div>
+                
                 <div className="form__button">
                     <button className="form__button-button" type="submit">Login</button>
+                </div>
+                <div className="form__button">
+                    <button id='demo' className="form__button-button" onClick={onclick}>Demo User</button>
                 </div>
 
             </div>

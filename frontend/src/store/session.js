@@ -58,6 +58,19 @@ export const logout = () => async (dispatch) => {
     return response;
 };
 
+export const demoLogin = () => async (dispatch) => {
+    try {
+        const response = await fetch('/api/session/demo', {
+            method: 'POST',
+            body: JSON.stringify({ credential: 'demoUser', password: 'demoUser123' }),
+        });
+        dispatch(setUser(response.data.user));
+        return response;
+    } catch (err) {
+        return err;
+    }
+};
+
 const initialState = { user: null };
 
 const sessionReducer = (state = initialState, action) => {
