@@ -5,6 +5,7 @@ const SET_PROJECTS = 'project/setProjects'
 const DELETE_PROJECT = 'project/deleteProject'
 const SET_TEAM_MEMBERS = 'project/setTeamMembers'
 const ADD_TEAM_MEMBER = 'project/addTeamMember'
+const DELETE_MEMBER = 'project/deleteMember'
 
 const createProject = (project) => {
     return {
@@ -36,6 +37,13 @@ const addMember = (member) => {
     return {
         type: ADD_TEAM_MEMBER,
         member
+    }
+}
+
+const deleteMember = (id) => {
+    return {
+        type: DELETE_MEMBER,
+        id
     }
 }
 
@@ -97,6 +105,15 @@ export const addTeamMember = (userId, projectId) => async (dispatch) => {
     return
 }
 
+export const removeTeamMember = (id) => async (dispatch) => {
+    const response = await fetch(`/api/projects/teammembers/${id}`, {
+        method:'DELETE'
+    })
+    dispatch(deleteMember(id))
+    return 
+
+}
+
 const initialState = {};
 
 const projectReducer = (state = initialState, action) =>{
@@ -122,6 +139,9 @@ const projectReducer = (state = initialState, action) =>{
             newState = {...state}
             newState.members[action.member.id] = action.member
             return newState
+        case DELETE_MEMBER:
+            newState = {... state}
+            delete newState.members[action.id]
         default:
             return state
     }

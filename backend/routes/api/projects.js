@@ -55,6 +55,16 @@ router.post('/teammembers', asyncHandler(async (req, res) => {
     }
 }))
 
+router.delete('/teammembers/:id', asyncHandler(async (req,res) => {
+    await TeamMember.destroy({
+        where:{
+            id: req.params.id
+        }
+    })
+
+    res.json('Deleted')
+}))
+
 router.delete('/:id', asyncHandler( async (req, res) => {
     await Project.destroy({
         where:{

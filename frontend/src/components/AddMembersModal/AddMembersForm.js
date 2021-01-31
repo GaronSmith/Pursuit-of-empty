@@ -2,7 +2,7 @@ import { Multiselect } from 'multiselect-react-dropdown'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetch } from '../../store/csrf'
-import { addTeamMember, getTeamMembers } from '../../store/project'
+import { addTeamMember, getTeamMembers, removeTeamMember } from '../../store/project'
 import './AddMembersForm.css'
 
 const AddMembersForm = ({project}) => {
@@ -12,10 +12,11 @@ const AddMembersForm = ({project}) => {
     const dispatch = useDispatch();
     
     const arrayTeamMembers = (teamMembers => {
-        console.log('func', teamMembers)
         if (typeof teamMembers === 'object') {
-            console.log('hit')
-            setMembers(Object.values(teamMembers).map(el => el.User))
+            console.log(Object.values(teamMembers), 'func')
+            setMembers(Object.values(teamMembers).map(el => {
+                return {id:el.id, username:el.User.username}
+            }))
             return 
         } else {
             setMembers([])
@@ -27,11 +28,7 @@ const AddMembersForm = ({project}) => {
     },[teamMembers])
     
 
-    
-    
-
-    
-    console.log('members', members)
+    console.log(members)
     useEffect(() => {
         dispatch(getTeamMembers(project.id))
     },[dispatch])
@@ -57,7 +54,7 @@ const AddMembersForm = ({project}) => {
     }
 
     const onRemove = async (selectedList, selectedItem) => {
-        dispatch()
+        dispatch(removeTeamMember(selectedItem.id))
     }
     return (
         <div className='form__content-container'>
