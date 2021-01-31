@@ -6,7 +6,8 @@ button:focus {
     outline: none;
 }
 input:-webkit-autofill {
-    -webkit-background-clip: text;
+    /* -webkit-background-clip: text; */
+    -webkit-box-shadow:0 0 0 50px rgb(157,213,211) inset
     
 }
 .notransition {
