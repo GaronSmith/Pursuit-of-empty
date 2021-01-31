@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBan, faProjectDiagram } from '@fortawesome/free-solid-svg-icons'
+import { faBan, faUsers, faProjectDiagram } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch, useSelector } from "react-redux"
 import { getProjects, removeProject } from "../../store/project"
 import AddMembersModal from "../AddMembersModal"
@@ -23,6 +23,9 @@ const ProjectDetails = ({project}) =>{
                     <FontAwesomeIcon className='project-icon' icon={faProjectDiagram} /> {project.name}</Link> 
                 {sessionUser.id === project.ownerId && 
                 <div className='project-tile__buttons'>
+                {/* <button className='project-tile__add-users'>
+                    <FontAwesomeIcon icon={faUsers} />
+                </button>  */}
                 < AddMembersModal project={project} />
                 <button onClick={onClick} className='project-tile__delete'>
                     <FontAwesomeIcon icon={faBan} />
