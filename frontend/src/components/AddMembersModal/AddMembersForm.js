@@ -27,9 +27,11 @@ const AddMembersForm = ({project}) => {
         arrayTeamMembers(teamMembers)
     },[teamMembers])
     
+
+    console.log(members)
     useEffect(() => {
         dispatch(getTeamMembers(project.id))
-    },[dispatch, project.id])
+    },[dispatch])
 
     const searchInput = async (value) => {
         if(value.length){
