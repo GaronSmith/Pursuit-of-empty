@@ -61,10 +61,10 @@ function LoginForm() {
 
                 </div>
                 <div className="form__input-container">
-                    <input 
+                    <input className='no-transition'
                         type="password"
                         value={password}
-                        className="form__input-container--text no-transition"
+                        className="form__input-container--text"
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder='password'
                         required

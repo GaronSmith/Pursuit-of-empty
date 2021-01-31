@@ -106,7 +106,7 @@ export const addTeamMember = (userId, projectId) => async (dispatch) => {
 }
 
 export const removeTeamMember = (id) => async (dispatch) => {
-    await fetch(`/api/projects/teammembers/${id}`, {
+    const response = await fetch(`/api/projects/teammembers/${id}`, {
         method:'DELETE'
     })
     dispatch(deleteMember(id))
@@ -140,9 +140,8 @@ const projectReducer = (state = initialState, action) =>{
             newState.members[action.member.id] = action.member
             return newState
         case DELETE_MEMBER:
-            newState = {...state}
+            newState = {... state}
             delete newState.members[action.id]
-            break
         default:
             return state
     }
