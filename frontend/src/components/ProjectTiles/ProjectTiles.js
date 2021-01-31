@@ -31,7 +31,7 @@ const ProjectsTiles = () => {
     return (
         <div className='projects'>
             <div className='tiles-container__my-projects'>
-                <h3 className='tiles-container__title'>My Projects</h3>
+                <h3 className='tiles-container__title'>Project Owner</h3>
                 {Object.values(projects).map(proj => {
                     if (proj.id !== undefined){
                         return (
@@ -43,7 +43,7 @@ const ProjectsTiles = () => {
                 })}
             </div>
             <div className='tiles-container__assigned-projects'>
-                <h3 className='tiles-container__title'>Team Projects</h3>
+                <h3 className='tiles-container__title'>Project Member</h3>
                 {Object.values(assignedProj).map(proj => {
                     return (
                         <div key={i--} className='tiles-container__tile'>
