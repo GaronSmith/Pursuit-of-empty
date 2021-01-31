@@ -33,6 +33,20 @@ const normalizedNames = (arr) => {
     return obj
 }
 
+export const addUser = (id) => async (dispatch) => {
+    for(let i = 1; i<=4; i++){
+        const workflowStatusId = i
+        const orderIdx = i
+        const userId = id
+        const body = {workflowStatusId, orderIdx, userId}
+        await fetch('/api/preferences', {
+            method:'POST',
+            body:JSON.stringify(body)
+        })
+    }
+    dispatch(getPreferences(id))
+}
+
 
 
 const initialState = {};

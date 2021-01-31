@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 
 import './SignupForm.css';
 import { signup } from '../../store/session';
+import { addUser } from '../../store/preferences';
 
 const SignupForm = () => {
     const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const SignupForm = () => {
         setErrors([])
         if (password === confirmPassword) {
             return dispatch(signup({ username,firstName, lastName, email, password }))
+                .then((res) => dispatch(addUser(res.data.user.id)))
                 .catch((res) => {
                     if (res.data && res.data.errors) setErrors(res.data.errors)
                 })
