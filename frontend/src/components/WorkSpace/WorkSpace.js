@@ -48,7 +48,6 @@ const WorkSpace = () => {
 
     const onDragEnd = (result) => {
         const {destination, source, draggableId} = result;
-       console.log(dragState)
 
         if(!destination) return
 

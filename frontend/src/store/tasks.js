@@ -42,7 +42,6 @@ const updatedTask = (task) => {
 export const createTask = (name,storyId) => async (dispatch) => {
     const completed = false;
     const body = {name, storyId, completed}
-    console.log('thunk', body)
     const response = await fetch('/api/projects/tasks',{
         method:'POST',
         body: JSON.stringify(body),
@@ -77,7 +76,6 @@ export const updateTask = (task) => async(dispatch) => {
         method:'PUT',
         body:JSON.stringify(body)
     })
-    console.log('****',response.data)
     dispatch(updatedTask(response.data))
     return response
 }

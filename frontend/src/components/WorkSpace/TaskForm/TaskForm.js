@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux'
 import { createTask } from '../../../store/tasks';
 import './TaskForm.css'
 const TaskForm = ({storyId}) => {
-    console.log(storyId)
     const dispatch = useDispatch();
     const[name, setName] = useState('')
 

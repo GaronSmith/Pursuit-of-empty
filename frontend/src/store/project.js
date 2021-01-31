@@ -82,7 +82,6 @@ export const getTeamMembers = (id) => async (dispatch) => {
     Object.keys(response.data.teamMembers).forEach(el => {
         obj[response.data.teamMembers[el].id] = response.data.teamMembers[el]
     })
-    console.log('thunk', response.data.teamMembers)
     dispatch(setTeamMembers(obj))
     return obj
 }

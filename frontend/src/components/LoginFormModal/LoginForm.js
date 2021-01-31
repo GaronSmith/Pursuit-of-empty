@@ -29,7 +29,7 @@ function LoginForm() {
         e.preventDefault()
         dispatch(sessionActions.demoLogin()).then(() => history.push('/dashboard')).catch(
             (res) => {
-                if (res.data && res.data.errors) console.log(res.data.errors);
+                if (res.data && res.data.errors) setErrors(res.data.errors);
             }
         );
     }
