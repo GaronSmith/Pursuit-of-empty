@@ -22,8 +22,6 @@ const WorkSpace = () => {
     const sessionUser = useSelector(state => state.session.user)
     const preferences = useSelector(state => state.preferences)
     const stories = useSelector(state => state.stories)
-    // const projects = useSelector(state => state.projects)
-    // const assignedProj = useSelector(state => state.assignedProjects)
 
     const [dragState, setDragState] = useState({stories:{}, columns:{}, columnOrder:[]})
 
