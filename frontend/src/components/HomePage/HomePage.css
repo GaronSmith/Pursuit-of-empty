@@ -1,0 +1,27 @@
+.homepage__container{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.homepage__banner{
+    background-image: url('https://www.transparentpng.com/thumb/networking/networking-picture-png-2.png');
+    background-size: 800px;
+    height: 600px;
+    background-repeat: repeat-x;
+    align-self: center;
+    width:100%;
+}
+
+.homepage__content, .homepage__header{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 80%;
+}
+.homepage__header-title, 
+.homepage__content-about-container,
+.homepage__header-tagline{
+    align-self: center;
+    color: rgb(11,12,15);
+}
