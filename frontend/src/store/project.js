@@ -4,6 +4,7 @@ const CREATE_PROJECT = 'project/createProject';
 const SET_PROJECTS = 'project/setProjects'
 const DELETE_PROJECT = 'project/deleteProject'
 const SET_TEAM_MEMBERS = 'project/setTeamMembers'
+const ADD_TEAM_MEMBER = 'project/addTeamMember'
 
 const createProject = (project) => {
     return {
@@ -29,6 +30,12 @@ const setTeamMembers= (teamMembers) => {
     return {
         type: SET_TEAM_MEMBERS,
         teamMembers
+    }
+}
+const addMember = (member) => {
+    return {
+        type: ADD_TEAM_MEMBER,
+        member
     }
 }
 
@@ -67,6 +74,7 @@ export const getTeamMembers = (id) => async (dispatch) => {
     Object.keys(response.data.teamMembers).forEach(el => {
         obj[response.data.teamMembers[el].id] = response.data.teamMembers[el]
     })
+    console.log('thunk', response.data.teamMembers)
     dispatch(setTeamMembers(obj))
     return obj
 }
@@ -76,6 +84,16 @@ export const removeProject = (id) => async (dispatch) => {
         method:'DELETE'
     })
     dispatch(delProject(id))
+    return
+}
+
+export const addTeamMember = (userId, projectId) => async (dispatch) => {
+    const body = {userId, projectId};
+    const response = await fetch('/api/projects/teammembers', {
+        method:'POST',
+        body:JSON.stringify(body)
+    })
+    dispatch(addMember(response.data.member))
     return
 }
 
@@ -99,6 +117,10 @@ const projectReducer = (state = initialState, action) =>{
         case SET_TEAM_MEMBERS:
             newState = {...state}
             newState.members = action.teamMembers
+            return newState
+        case ADD_TEAM_MEMBER:
+            newState = {...state}
+            newState.members[action.member.id] = action.member
             return newState
         default:
             return state

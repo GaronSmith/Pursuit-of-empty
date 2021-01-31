@@ -2,16 +2,18 @@ import { Multiselect } from 'multiselect-react-dropdown'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetch } from '../../store/csrf'
-import { getTeamMembers } from '../../store/project'
+import { addTeamMember, getTeamMembers } from '../../store/project'
 import './AddMembersForm.css'
 
 const AddMembersForm = ({project}) => {
-    const teamMembers = useSelector(state => state.projects.members)
-    const[options, setOptions] = useState([])
-    const[members, setMembers] = useState(teamMembers)
-    const dispatch = useDispatch();
-    
+    const teamMembers = useSelector(state => (state.projects.members))
 
+    const[options, setOptions] = useState([])
+    const[members, setMembers] = useState(Object.values(teamMembers).map(el => el.User))
+    const dispatch = useDispatch();
+
+    
+    console.log('Tmembers', teamMembers)
     useEffect(() => {
         dispatch(getTeamMembers(project.id))
     },[dispatch])
@@ -32,8 +34,8 @@ const AddMembersForm = ({project}) => {
         }
     }
 
-    const onSelect = async (selectedList, selectedItem) => {
-        dispatch(selectedItem.id, project.id)
+    const onSelect = (selectedList, selectedItem) => {
+        dispatch(addTeamMember(selectedItem.id, project.id))
     }
 
     const onRemove = async (selectedList, selectedItem) => {
