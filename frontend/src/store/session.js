@@ -63,7 +63,6 @@ export const demoLogin = () => async (dispatch) => {
         method: 'POST',
         body: JSON.stringify({ credential: 'demouser@demoUser.com', password: 'demoUser123' }),
     });
-    console.log('test',response.data.user)
     dispatch(setUser(response.data.user));
     return response;
 

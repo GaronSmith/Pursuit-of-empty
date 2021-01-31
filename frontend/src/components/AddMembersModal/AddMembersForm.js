@@ -13,7 +13,6 @@ const AddMembersForm = ({project}) => {
     
     const arrayTeamMembers = (teamMembers => {
         if (typeof teamMembers === 'object') {
-            console.log(Object.values(teamMembers), 'func')
             setMembers(Object.values(teamMembers).map(el => {
                 return {id:el.id, username:el.User.username}
             }))
@@ -27,8 +26,6 @@ const AddMembersForm = ({project}) => {
         arrayTeamMembers(teamMembers)
     },[teamMembers])
     
-
-    console.log(members)
     useEffect(() => {
         dispatch(getTeamMembers(project.id))
     },[dispatch])

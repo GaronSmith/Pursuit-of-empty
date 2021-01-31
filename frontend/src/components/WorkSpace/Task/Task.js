@@ -9,8 +9,6 @@ import { useState } from 'react'
 const Task = ({task}) => {
     const dispatch = useDispatch();
     const [checked, setChecked] = useState(task.completed);
-    (console.log(task.completed, 'completed'))
-    console.log(checked, 'checked')
 
     const onClick = (e) => {
         e.preventDefault()

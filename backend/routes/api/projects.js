@@ -212,7 +212,6 @@ router.put('/tasks/:id', asyncHandler( async (req, res) => {
     const task = await Task.findByPk(req.params.id)
 
     await task.update({completed})
-    console.log(task)
     res.json(task)
 }))
 
