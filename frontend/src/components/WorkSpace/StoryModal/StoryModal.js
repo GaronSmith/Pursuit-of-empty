@@ -36,7 +36,6 @@ const StoryModal = ({ story, icon, workflowStatusId, project, priority}) => {
                     className= 'modal' 
                     story={story} 
                     handleClose={handleClose} 
-                    story={story}
                     workflowStatusId={workflowStatusId}
                     project={project}
                     priority={priority}/>
