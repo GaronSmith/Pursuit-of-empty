@@ -15,7 +15,7 @@ function LoginForm() {
 
     if(sessionUser) return <Redirect to='/dashboard' />
 
-    const onSubmit = (e) => {
+    const onLogin = (e) => {
         e.preventDefault();
         setErrors([]);
         return dispatch(sessionActions.login({ credential, password })).then(() => history.push('/dashboard') ).catch(
@@ -24,6 +24,18 @@ function LoginForm() {
             }
         );
     };
+
+    const onClick = (e) => {
+        e.preventDefault()
+        dispatch(sessionActions.demoLogin()).then(() => history.push('/dashboard')).catch(
+            (res) => {
+                if (res.data && res.data.errors) console.log(res.data.errors);
+            }
+        );
+    }
+    const onSubmit = (e) => {
+        e.preventDefault()
+    }
 
     return (
       
@@ -59,8 +71,12 @@ function LoginForm() {
                     />
 
                 </div>
+                
                 <div className="form__button">
-                    <button className="form__button-button" type="submit">Login</button>
+                    <button className="form__button-button" onClick={onLogin}>Login</button>
+                </div>
+                <div className="form__button">
+                    <button id='demo' className="form__button-button" onClick={onClick}>Demo User</button>
                 </div>
 
             </div>
