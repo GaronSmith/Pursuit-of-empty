@@ -5,6 +5,7 @@ import Navigation from "./components/Navigation";
 import ProjectsTiles from "./components/ProjectTiles"
 import { Switch, Route } from "react-router-dom";
 import WorkSpace from "./components/WorkSpace";
+import HomePage from "./components/HomePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ function App() {
 
       <Switch>
           <Route exact path='/'>
-            
+            <HomePage />
           </Route>
           <Route path='/dashboard'>
             <ProjectsTiles isLoaded={isLoaded} />
