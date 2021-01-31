@@ -33,7 +33,6 @@ const ProjectsTiles = () => {
             <div className='tiles-container__my-projects'>
                 <h3 className='tiles-container__title'>My Projects</h3>
                 {Object.values(projects).map(proj => {
-                    console.log(proj)
                     if (proj.id !== undefined){
                         return (
                             <div key={i--} className='tiles-container__tile'>

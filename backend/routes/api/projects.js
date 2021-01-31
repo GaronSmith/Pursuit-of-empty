@@ -40,7 +40,13 @@ router.get('/teammembers/:id', asyncHandler(async (req,res) => {
 }))
 
 router.post('/teammembers', asyncHandler(async (req, res) => {
-    const member = await TeamMember.create(req.body)
+    const {userId, projectId} = req.body
+    const newMember = await TeamMember.create(req.body)
+
+    const member = await TeamMember.findOne({
+        include:User,
+        where:{userId,projectId}
+    })
 
     if(member){
         return res.json({

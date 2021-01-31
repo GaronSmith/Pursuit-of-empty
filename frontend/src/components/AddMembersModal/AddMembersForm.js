@@ -7,13 +7,31 @@ import './AddMembersForm.css'
 
 const AddMembersForm = ({project}) => {
     const teamMembers = useSelector(state => (state.projects.members))
-
-    const[options, setOptions] = useState([])
-    const[members, setMembers] = useState(Object.values(teamMembers).map(el => el.User))
+    const [options, setOptions] = useState([])
+    const [members, setMembers] = useState([])
     const dispatch = useDispatch();
+    
+    const arrayTeamMembers = (teamMembers => {
+        console.log('func', teamMembers)
+        if (typeof teamMembers === 'object') {
+            console.log('hit')
+            setMembers(Object.values(teamMembers).map(el => el.User))
+            return 
+        } else {
+            setMembers([])
+            return 
+        }
+    })
+    useEffect(() => {
+        arrayTeamMembers(teamMembers)
+    },[teamMembers])
+    
 
     
-    console.log('Tmembers', teamMembers)
+    
+
+    
+    console.log('members', members)
     useEffect(() => {
         dispatch(getTeamMembers(project.id))
     },[dispatch])
