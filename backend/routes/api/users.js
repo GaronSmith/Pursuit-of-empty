@@ -5,6 +5,7 @@ const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
+const  { Op }  = require('sequelize');
 
 const router = express.Router()
 
@@ -41,5 +42,19 @@ router.post(
         });
     }),
 );
+
+router.post('/search', asyncHandler(async (req,res) => {
+    const search = req.body
+
+    const searchResults = await User.findAll({
+        where:{
+            username:{
+                [Op.iLike]: `%${search.value}%`
+            }
+        },
+        limit:10,
+    })
+    res.json({searchResults})
+}))
 
 module.exports = router;

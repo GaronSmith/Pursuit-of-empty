@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 const Sequelize = require('sequelize');
 
-const {Project, TeamMember, Story, Task} = require('../../db/models');
+const {Project, TeamMember, Story, Task, User} = require('../../db/models');
 const story = require('../../db/models/story');
 const { handleValidationErrors } = require('../../utils/validation');
 
@@ -27,6 +27,42 @@ router.post('/', validateProject, asyncHandler(async (req,res) => {
     return res.json({
         project,
     });
+}))
+
+router.get('/teammembers/:id', asyncHandler(async (req,res) => {
+    const teamMembers = await TeamMember.findAll({
+        include:User,
+        where:{
+            projectId: req.params.id
+        }
+    })
+    res.json({teamMembers})
+}))
+
+router.post('/teammembers', asyncHandler(async (req, res) => {
+    const {userId, projectId} = req.body
+    const newMember = await TeamMember.create(req.body)
+
+    const member = await TeamMember.findOne({
+        include:User,
+        where:{userId,projectId}
+    })
+
+    if(member){
+        return res.json({
+            member
+        })
+    }
+}))
+
+router.delete('/teammembers/:id', asyncHandler(async (req,res) => {
+    await TeamMember.destroy({
+        where:{
+            id: req.params.id
+        }
+    })
+
+    res.json('Deleted')
 }))
 
 router.delete('/:id', asyncHandler( async (req, res) => {

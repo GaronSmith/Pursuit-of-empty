@@ -3,6 +3,9 @@ import { fetch } from './csrf'
 const CREATE_PROJECT = 'project/createProject';
 const SET_PROJECTS = 'project/setProjects'
 const DELETE_PROJECT = 'project/deleteProject'
+const SET_TEAM_MEMBERS = 'project/setTeamMembers'
+const ADD_TEAM_MEMBER = 'project/addTeamMember'
+const DELETE_MEMBER = 'project/deleteMember'
 
 const createProject = (project) => {
     return {
@@ -20,6 +23,26 @@ const setProjects = (projects) => {
 const delProject = (id) => {
     return {
         type: DELETE_PROJECT,
+        id
+    }
+}
+
+const setTeamMembers= (teamMembers) => {
+    return {
+        type: SET_TEAM_MEMBERS,
+        teamMembers
+    }
+}
+const addMember = (member) => {
+    return {
+        type: ADD_TEAM_MEMBER,
+        member
+    }
+}
+
+const deleteMember = (id) => {
+    return {
+        type: DELETE_MEMBER,
         id
     }
 }
@@ -53,12 +76,42 @@ export const getProjects = (id) => async (dispatch) => {
     return response
 }
 
+export const getTeamMembers = (id) => async (dispatch) => {
+    const response = await fetch(`/api/projects/teammembers/${id}`)
+    const obj = {}
+    Object.keys(response.data.teamMembers).forEach(el => {
+        obj[response.data.teamMembers[el].id] = response.data.teamMembers[el]
+    })
+    console.log('thunk', response.data.teamMembers)
+    dispatch(setTeamMembers(obj))
+    return obj
+}
+
 export const removeProject = (id) => async (dispatch) => {
     await fetch(`/api/projects/${id}`, {
         method:'DELETE'
     })
     dispatch(delProject(id))
     return
+}
+
+export const addTeamMember = (userId, projectId) => async (dispatch) => {
+    const body = {userId, projectId};
+    const response = await fetch('/api/projects/teammembers', {
+        method:'POST',
+        body:JSON.stringify(body)
+    })
+    dispatch(addMember(response.data.member))
+    return
+}
+
+export const removeTeamMember = (id) => async (dispatch) => {
+    const response = await fetch(`/api/projects/teammembers/${id}`, {
+        method:'DELETE'
+    })
+    dispatch(deleteMember(id))
+    return 
+
 }
 
 const initialState = {};
@@ -78,6 +131,17 @@ const projectReducer = (state = initialState, action) =>{
             newState = {...state}
             delete newState[action.id]
             return newState
+        case SET_TEAM_MEMBERS:
+            newState = {...state}
+            newState.members = action.teamMembers
+            return newState
+        case ADD_TEAM_MEMBER:
+            newState = {...state}
+            newState.members[action.member.id] = action.member
+            return newState
+        case DELETE_MEMBER:
+            newState = {... state}
+            delete newState.members[action.id]
         default:
             return state
     }
