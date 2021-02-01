@@ -2,6 +2,7 @@
     display: flex;
     margin-top: .5rem;
     flex-direction: row;
+    justify-content: space-between;
     color:rgb(197,198,200);
     background-color: rgb(100,102,104);
     border-radius: 5px;
@@ -10,7 +11,7 @@
 .taskform-add{
     height:50%;
     align-self: center;
-    margin-left: 2rem;
+    margin-right: 2rem;
     background-color: rgb(151,154,156);
     border:none
 }
