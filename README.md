@@ -43,3 +43,11 @@ To run this application locally for development, you'll need to:
 [Here's](https://github.com/Lazytangent/TheJuiceBox/wiki) a link to the Documentation!
 
 ## Features
+Users can:
+
+* Create Projects 
+* Add members to projects
+* Create Stories
+* Drag and drop stories for story progression 
+* Provide statuses for stories
+* Create and complete tasks for individual stories 
