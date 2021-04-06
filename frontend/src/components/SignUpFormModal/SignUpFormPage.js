@@ -49,7 +49,7 @@ const SignupForm = () => {
                             className="form__input-container--text"
                             type="text" value={username}
                             onChange={e => setUsername(e.target.value)}
-                            placeholder='username'
+                            placeholder='Username'
                         />
                     </div>
                     <div className="form__input-container">
