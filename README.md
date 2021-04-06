@@ -40,7 +40,7 @@ To run this application locally for development, you'll need to:
 
 ## Wiki
 
-[Here's](https://github.com/Lazytangent/TheJuiceBox/wiki) a link to the Documentation!
+[Here's](https://github.com/GaronSmith/Pursuit-of-empty/wiki) a link to the Documentation!
 
 ## Features
 Users can:
