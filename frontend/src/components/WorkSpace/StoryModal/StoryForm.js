@@ -69,9 +69,10 @@ const StoryForm = ({handleClose, story, workflowStatusId, project, priority}) =>
                 <input
                     required
                     className="form__input-container--text"
-                    type="text" value={name}
+                    type="text" 
+                    value={name == "new" ? "" : name}
                     onChange={e => setName(e.target.value)}
-                    placeholder={name}
+                    placeholder={"title"}
                 /> 
             </div>
             <div className='form__input-container'>
