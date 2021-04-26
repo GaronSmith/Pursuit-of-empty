@@ -34,7 +34,7 @@ To run this application locally for development, you'll need to:
 * React
 * Redux
 
-## Live Site
+## Live Site Link
 
 [Here's](https://pursuit-of-empty.herokuapp.com/) a link to the live app!
 
